@@ -7,7 +7,7 @@
         name: openjdk-8-jdk
         state: present
    - name: Install Jenkins slave agent
-     community.general.jenkins_job
+     community.general.jenkins_job:
       url: http://localhost:8080/
       username: admin
       password: admin
