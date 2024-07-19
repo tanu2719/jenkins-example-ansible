@@ -8,7 +8,7 @@
         state: present
    - name: Install Jenkins slave agent
      Jenkins:
-      url: http://localhost:8080/ 
+      url: "http://localhost:8080/" 
       username: admin
       password: admin
       labels: ["ubuntu-1"]
