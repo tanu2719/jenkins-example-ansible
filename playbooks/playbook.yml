@@ -2,8 +2,8 @@
  # connection: local
   become: true
   become_method: sudo
-  become_user: root
-  become_password: ubuntu
+  ansible_become_user: root
+  ansible_become_password: ubuntu
   hosts: localhosts
   #become: yes
   tasks:
