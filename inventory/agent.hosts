@@ -1,10 +1,6 @@
 [localhosts]
-192.168.1.104 
+192.168.1.104 ansible_username=ubuntu ansible_password=ubuntu
 
 [localhosts:vars]
 ansible_python_interpreter=/usr/bin/python3
-ansible_become: true
-ansible_become_method: runas
-ansible_become_user: DOMAIN\ubuntu_user
-ansible_become_password: Password01
-ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+
