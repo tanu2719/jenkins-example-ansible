@@ -14,11 +14,11 @@
       labels: ["ubuntu-1"]
       node_lables: ["ubuntu-1"]
       executors: 2
-  - name: Configure Jenkins slave to use specific Jenkins directory
-    file:
-	path: Jenkins
-	state: directory
- - name: Start Jenkins slave service
-    service:
+   - name: Configure Jenkins slave to use specific 
+     file:
+      path: Jenkins
+      services: started
+   - name: Start jenkins slave service
+     service:
       name: jenkins-slave
       state: started
