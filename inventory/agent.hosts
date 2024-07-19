@@ -1,5 +1,5 @@
 [localhosts]
-192.168.1.104 ansible_become_user=root ansible_become_pass=ubuntu
+192.168.1.104 
 
 [localhosts:vars]
 ansible_python_interpreter=/usr/bin/python3
