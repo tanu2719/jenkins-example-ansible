@@ -1,0 +1,44 @@
+---
+-name: Create Jenkins slave
+ hosts: localhosts
+ become: yes
+
+ tasks:
+  - name: Install Java
+    apt:
+      name: openjdk-8-jdk
+      state: present
+
+  - name: Install Jenkins slave agent
+    Jenkins:
+	url: http://localhost:8080/ 
+	username: admin
+	password: admin
+	labels:["ubuntu-1"]
+	node_lables: ["ubuntu-1"]
+	executors: 2
+
+
+# - name: Configure Jenkins slave
+#    template:
+#      src: templates/jenkins-slave.xml.j2
+#      dest: /etc/jenkins/jnlp.slave
+#      mode: '0644'
+#    notify: restart jenkins
+
+
+  - name: Configure Jenkins slave to use specific Jenkins directory
+      file:
+	path: Jenkins
+        State: directory
+
+  - name: Start Jenkins slave service
+    service:
+      name: jenkins-slave
+      state: started
+
+handlers:
+  - name: restart jenkins
+    service:
+      name: jenkins
+      state: restarted
