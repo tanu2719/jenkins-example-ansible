@@ -1,4 +1,3 @@
----
 -name: Create Jenkins slave
  hosts: localhosts
  become: yes
