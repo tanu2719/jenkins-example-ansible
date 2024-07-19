@@ -17,7 +17,7 @@
   - name: Configure Jenkins slave to use specific Jenkins directory
     file:
 	path: Jenkins
-	State: directory
+	state: directory
  - name: Start Jenkins slave service
     service:
       name: jenkins-slave
