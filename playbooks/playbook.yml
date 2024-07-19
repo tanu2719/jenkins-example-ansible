@@ -2,10 +2,10 @@
   hosts: localhosts
   become: yes
   tasks:
-	 - name: Install Java
-	    apt:
-	      name: openjdk-8-jdk
-	      state: present
+   - name: Install Java
+     apt:
+     name: openjdk-8-jdk
+     state: present
 	 - name: Install Jenkins slave agent
 	    Jenkins:
 		url: http://localhost:8080/ 
@@ -22,8 +22,3 @@
 	    service:
 	      name: jenkins-slave
 	      state: started
-handlers:
-  - name: restart jenkins
-    service:
-      name: jenkins
-      state: restarted
