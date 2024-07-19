@@ -1,47 +1,24 @@
-- name: MariaDB installation
-  hosts: mariadbs
-  become: yes
-  tasks:
-    - name: enable and start firewalld service
-      systemd:
-        name: firewalld
-        state: started
-        enabled: yes
-    - name: permit traffic in default zone on port 22/tcp
-      ansible.posix.firewalld:
-        port: 22/tcp
-        permanent: yes
-        state: enabled
-        immediate: yes
-
-
-
-
-
-
-
-
 - name: Create Jenkins slave
   hosts: localhosts
   become: yes
   tasks:
    - name: Install Java
      apt:
-     name: openjdk-8-jdk
-     state: present
-	 - name: Install Jenkins slave agent
-	    Jenkins:
-		url: http://localhost:8080/ 
-		username: admin
-		password: admin
-		labels:["ubuntu-1"]
-		node_lables: ["ubuntu-1"]
-		executors: 2
-	- name: Configure Jenkins slave to use specific Jenkins directory
-	      file:
-		path: Jenkins
-	        State: directory
-	 - name: Start Jenkins slave service
-	    service:
-	      name: jenkins-slave
-	      state: started
+      name: openjdk-8-jdk
+      state: present
+   - name: Install Jenkins slave agent
+     Jenkins:
+      url: http://localhost:8080/ 
+      username: admin
+      password: admin
+      labels: ["ubuntu-1"]
+      node_lables: ["ubuntu-1"]
+      executors: 2
+  - name: Configure Jenkins slave to use specific Jenkins directory
+    file:
+	path: Jenkins
+	State: directory
+ - name: Start Jenkins slave service
+    service:
+      name: jenkins-slave
+      state: started
