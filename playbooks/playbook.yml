@@ -1,10 +1,11 @@
 - name: Create Jenkins slave
  # connection: local
+  become: true
   become_method: sudo
   become_user: root
   become_password: ubuntu
   hosts: localhosts
-  become: yes
+  #become: yes
   tasks:
    - name: Install Java
      apt:
