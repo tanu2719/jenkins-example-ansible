@@ -3,3 +3,6 @@
 
 [localhosts:vars]
 ansible_python_interpreter=/usr/bin/python3
+become_method: sudo
+ansible_become_user: root
+ansible_become_password: ubuntu
