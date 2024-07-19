@@ -1,5 +1,8 @@
 - name: Create Jenkins slave
-  connection: local
+ # connection: local
+  become_method: sudo
+  become_user: root
+  become_password: ubuntu
   hosts: localhosts
   become: yes
   tasks:
