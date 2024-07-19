@@ -1,12 +1,9 @@
 pipeline {
   agent any
-  environment {
-   ANSIBLE_PRIVATE_KEY=credentials('mariadb-private-key') 
-  }
   stages {
     stage('Hello') {
       steps {
-        sh 'ansible-playbook -i inventory/hosts.yml --private-key=$ANSIBLE_PRIVATE_KEY playbooks/playbook.yml'
+        sh 'ansible-playbook -i inventory/hosts.yml playbooks/playbook.yml'
       }
     }
   }
