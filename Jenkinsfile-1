@@ -1,13 +1,12 @@
 pipeline {
   agent any
-
   stages {
     stage('Hello') {
       steps {
         sh '''
-          ansible --version
-          ansible-playbook --version
-          ansible-galaxy --version
+          /opt/homebrew/bin/ansible --version
+          /opt/homebrew/bin/ansible-playbook --version
+          /opt/homebrew/bin/ansible-galaxy --version
         '''
       }
     }
