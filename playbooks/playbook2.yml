@@ -22,6 +22,3 @@
         status_code: 200  # Define the expected status code if necessary
         validate_certs: no  # Adjust as needed based on your Jenkins setup
       register: result
-
-- debug:
-    var: result
