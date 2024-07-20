@@ -6,10 +6,6 @@
     - name: Task 1
       debug:
         msg: "Running on {{ ansible_hostname }}"  
-    - name: Install Java
-      apt:
-        name: openjdk-8-jdk
-        state: present
     - name: Install Jenkins slave agent
       community.general.jenkins_job:
        url: http://localhost:8080/
