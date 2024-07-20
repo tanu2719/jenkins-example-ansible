@@ -15,8 +15,8 @@
       ansible.builtin.uri:
         url: "{{ jenkins_url }}/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb)"
         method: GET
-        user: "{{ jenkins_username }}"
-        password: "{{ jenkins_password }}"
+        user: "admin"
+        password: "admin"
         status_code: 200
       register: crumb_response
     - name: Create Jenkins slave node
