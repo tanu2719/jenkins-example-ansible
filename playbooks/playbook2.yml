@@ -3,7 +3,9 @@
   vars:
     jenkins_url: "http://localhost:8080"
     jenkins_user: "admin"
-    jenkins_token: "11a60d0059efd55317827d3477a5d041b3"
+    jenkins_username: "admin"
+    jenkins_password: "admin"
+    #jenkins_token: "11a60d0059efd55317827d3477a5d041b3"
     slave_config_file: "requirements.json"
   tasks:
     - name: Ensure slave configuration file is present
@@ -14,6 +16,8 @@
       ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
         method: POST
+        user: "{{ jenkins_username }}"
+        password: "{{ jenkins_password }}"
         body_format: json
         body:
          name: "ansible-slave"
