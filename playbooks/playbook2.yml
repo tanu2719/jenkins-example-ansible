@@ -11,16 +11,17 @@
         src: "{{ slave_config_file }}"
         dest: "/Users/tanushreerakshit/.jenkins/workspace/ansible"
     - name: Create Jenkins slave node
-      uri:
+      ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
         method: POST
         body_format: json
         body:
-          name: "ansible-slave"
-          type: "hudson.slaves.DumbSlave$DescriptorImpl"
-          json: "{{ lookup('file', '/Users/tanushreerakshit/.jenkins/workspace/ansible/{{ slave_config_file }}') }}"
-        headers:
-          Content-Type: "application/json"
-          Authorization: "Basic {{ (jenkins_user + ':' + jenkins_token) | b64encode }}"
-        status_code: 200
-        validate_certs: no
+         name: "ansible-slave"
+         type: "hudson.slaves.DumbSlave$DescriptorImpl"
+         json: "{{ lookup('file', '/Users/tanushreerakshit/.jenkins/workspace/ansible/{{ slave_config_file }}') }}"
+        status_code: 200  # Define the expected status code if necessary
+        validate_certs: no  # Adjust as needed based on your Jenkins setup
+      register: result
+
+- debug:
+    var: result
