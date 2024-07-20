@@ -3,8 +3,7 @@
   vars:
     jenkins_url: "http://localhost:8080"
     jenkins_user: "admin"
-    jenkins_password: "admin"
-    jenkins_token: "11a60d0059efd55317827d3477a5d041b3"
+    jenkins_token: 11a60d0059efd55317827d3477a5d041b3
     slave_config_file: "requirements.json"
     jenkins_node: "my_new3"
   tasks:
@@ -16,8 +15,9 @@
       ansible.builtin.uri:
         url: "{{jenkins_url}}/computer/doCreateItem?name={{ jenkins_node }}&type=hudson.slaves.DumbSlave"
         method: POST
-        user: "admin"
-        password: "admin"
+        user: "{{jenkins_user}}"
+        password: "{{jenkins_token}}"
+        force_basic_auth: yes
         body_format: json
         body:
          name: "ansible-slave"
