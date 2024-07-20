@@ -18,6 +18,8 @@
         method: POST
         user: "admin"
         password: "admin"
+        headers:
+         Jenkins-Crumb: "69de74d977ec4876963556664dc93be0e9929afe38dd94a504695d932e62eb18"
         body_format: json
         body:
          name: "ansible-slave"
