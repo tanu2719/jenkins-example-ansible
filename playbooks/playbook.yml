@@ -15,16 +15,16 @@
         state: present
     - name: Install Jenkins slave agent
       community.general.jenkins_job:
-      url: http://localhost:8080/
-      username: admin
-      password: admin
-      labels: ["ubuntu-1"]
-      node_lables: ["ubuntu-1"]
-      executors: 2
+       url: http://localhost:8080/
+       username: admin
+       password: admin
+       labels: ["ubuntu-1"]
+       node_lables: ["ubuntu-1"]
+       executors: 2
     - name: Configure Jenkins slave to use specific 
       file:
-      path: Jenkins
-      services: directory
+       path: Jenkins
+       services: directory
     - name: Start jenkins slave service
       service:
        name: jenkins-slave
