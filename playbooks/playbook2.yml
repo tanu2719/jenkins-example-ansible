@@ -1,7 +1,7 @@
 - name: Create Jenkins slave
   hosts: localhost
   vars:
-    jenkins_url: "http://localhost:8080/"
+    jenkins_url: "http://localhost:8080"
     jenkins_user: "admin"
     jenkins_token: "111a7709d04bc6718dccbb9ac458f99153"
     slave_config_file: "requirements.yml"
