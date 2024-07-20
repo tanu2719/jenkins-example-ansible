@@ -1,6 +1,6 @@
 - name: Create Jenkins slave
   hosts: localhosts
-  #connection: local
+  connection: local
   become: yes
   tasks:
    - name: Install Java
