@@ -12,11 +12,11 @@
         src: "{{ slave_config_file }}"
         dest: "/Users/tanushreerakshit/.jenkins/workspace/ansible"
     - name: Create Jenkins slave node
-      ansible.builtin.uri:
+      uri:
         url: "{{jenkins_url}}/computer/doCreateItem?name={{ jenkins_node }}&type=hudson.slaves.DumbSlave$DescriptorImpl"
         method: POST
-        user: "{{jenkins_user}}"
-        password: "{{jenkins_token}}"
+        user: "admin"
+        password: "admin"
         force_basic_auth: yes
         body_format: json
         body:
