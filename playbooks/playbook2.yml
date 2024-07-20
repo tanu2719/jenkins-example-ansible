@@ -1,0 +1,27 @@
+- name: Create Jenkins slave
+  hosts: localhost
+  vars:
+    jenkins_url: "http://localhost:8080/"
+    jenkins_user: "admin"
+    jenkins_token: "111a7709d04bc6718dccbb9ac458f99153"
+    slave_config_file: "requirements.yml"
+  tasks:
+    - name: Ensure slave configuration file is present
+      copy:
+        src: "{{ slave_config_file }}"
+        dest: "/tmp/{{ slave_config_file }}"
+
+    - name: Create Jenkins slave node
+      uri:
+        url: "{{ jenkins_url }}/computer/doCreateItem"
+        method: POST
+        body_format: json
+        body:
+          name: "ansible-slave"
+          type: "hudson.slaves.DumbSlave$DescriptorImpl"
+          json: "{{ lookup('file', '/tmp/{{ slave_config_file }}') }}"
+        headers:
+          Content-Type: "application/json"
+          Authorization: "Basic {{ (jenkins_user + ':' + jenkins_token) | b64encode }}"
+        status_code: 200
+        validate_certs: no
