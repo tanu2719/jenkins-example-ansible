@@ -5,7 +5,7 @@
     jenkins_user: "admin"
     jenkins_token: "11a60d0059efd55317827d3477a5d041b3"
     slave_config_file: "requirements.json"
-    jenkins_node: "my_new3"
+    jenkins_node: "mynew"
   tasks:
     - name: Ensure slave configuration file is present
       ansible.builtin.copy:
@@ -13,7 +13,7 @@
         dest: "/Users/tanushreerakshit/.jenkins/workspace/ansible"
     - name: Create Jenkins slave node
       uri:
-        url: "{{ jenkins_url }}/computer/doCreateItem"
+        url: "{{jenkins_url}}/computer/doCreateItem?name={{ jenkins_node }}&type=hudson.slaves.DumbSlave"
         method: POST
         user: "admin"
         password: "11a60d0059efd55317827d3477a5d041b3"
