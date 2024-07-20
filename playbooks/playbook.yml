@@ -2,6 +2,7 @@
   hosts: localhosts
   connection: local
   become: yes
+  gather_facts: yes
   tasks:
    - name: Install Java
      apt:
