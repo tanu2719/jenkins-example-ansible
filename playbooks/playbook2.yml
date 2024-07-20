@@ -16,7 +16,7 @@
         url: "{{jenkins_url}}/computer/doCreateItem?name={{ jenkins_node }}&type=hudson.slaves.DumbSlave$DescriptorImpl"
         method: POST
         user: "admin"
-        password: "{{jenkins_token}}"
+        password: "11a60d0059efd55317827d3477a5d041b3"
         force_basic_auth: yes
         body_format: json
         body:
