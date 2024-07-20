@@ -8,6 +8,7 @@
         msg: "Running on {{ ansible_hostname }}"  
     - name: Install Jenkins slave agent
       community.general.jenkins_job:
+       name: jenkins-slave
        url: http://localhost:8080/
        username: admin
        password: admin
