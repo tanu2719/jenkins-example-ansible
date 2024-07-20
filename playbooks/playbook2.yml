@@ -4,7 +4,7 @@
     jenkins_url: "http://localhost:8080"
     jenkins_user: "admin"
     jenkins_token: "111a7709d04bc6718dccbb9ac458f99153"
-    slave_config_file: "requirements.yml"
+    slave_config_file: "requirements.json"
   tasks:
     - name: Ensure slave configuration file is present
       copy:
