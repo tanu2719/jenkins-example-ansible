@@ -7,9 +7,9 @@
     slave_config_file: "requirements.json"
   tasks:
     - name: Ensure slave configuration file is present
-      copy:
+      ansible.builtin.copy:
         src: "{{ slave_config_file }}"
-        dest: "{{ slave_config_file }}"
+        dest: "/Users/tanushreerakshit/.jenkins/workspace/ansible"
     - name: Create Jenkins slave node
       uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
