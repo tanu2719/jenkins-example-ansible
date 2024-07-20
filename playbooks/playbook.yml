@@ -6,27 +6,26 @@
     - name: Run a command and capture output
       command: whoami /jenkins
       register: ls_output
-
     - name: Print captured output
       debug:
         msg: "Output of 'ls' command: {{ ls_output.stdout }}"
-   - name: Install Java
-     apt:
+    - name: Install Java
+      apt:
         name: openjdk-8-jdk
         state: present
-   - name: Install Jenkins slave agent
-     community.general.jenkins_job:
+    - name: Install Jenkins slave agent
+      community.general.jenkins_job:
       url: http://localhost:8080/
       username: admin
       password: admin
       labels: ["ubuntu-1"]
       node_lables: ["ubuntu-1"]
       executors: 2
-   - name: Configure Jenkins slave to use specific 
-     file:
+    - name: Configure Jenkins slave to use specific 
+      file:
       path: Jenkins
       services: directory
-   - name: Start jenkins slave service
-     service:
-      name: jenkins-slave
-      state: started
+    - name: Start jenkins slave service
+      service:
+       name: jenkins-slave
+       state: started
