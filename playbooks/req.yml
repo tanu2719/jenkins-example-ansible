@@ -1,44 +1,13 @@
-- name: Get Jenkins Crumb Token
+- name: Create Jenkins Slave Node
   hosts: localhost
-  vars:
-    jenkins_url: "http://localhost:8080"
   tasks:
-    - name: Fetch Jenkins Crumb
-      ansible.builtin.uri:
-        url: "{{ jenkins_url }}/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb)"
-        method: GET
-        user: "admin"
-        password: "admin"
-        status_code: 200
-      register: crumb_response
-
     - name: Create Jenkins Node
       ansible.builtin.uri:
-        url: "{{ jenkins_url }}/computer/doCreateItem"
+        url: "{{ jenkins_url }}/computer/doCreateItem?name=mynew&type=hudson.slaves.DumbSlave"
         method: POST
-        user: "admin"
-        password: "admin"
-        headers:
-          Jenkins-Crumb: "{{ crumb_response.json | json_query('crumb') }}"
-        body_format: json
-        body: |
-          {
-            "name": "new-node",
-            "type": "hudson.slaves.DumbSlave$DescriptorImpl",
-            "json": {
-              "name": "new-node",
-              "nodeDescription": "My new Jenkins node",
-              "numExecutors": 1,
-              "remoteFS": "/home/jenkins",
-              "labelString": "linux",
-              "mode": "NORMAL",
-              "type": "hudson.slaves.DumbSlave$DescriptorImpl",
-              "retentionStrategy": {
-                "stapler-class": "hudson.slaves.RetentionStrategy$Always"
-              },
-              "nodeProperties": {
-                "stapler-class-bag": "true"
-              }
-            }
-          }
+        user: "{{ jenkins_username }}"
+        password: "{{ jenkins_password }}"
       register: result
+
+    - debug:
+        var: result
