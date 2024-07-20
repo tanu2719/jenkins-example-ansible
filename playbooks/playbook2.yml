@@ -16,8 +16,8 @@
       ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
         method: POST
-        user: "{{ jenkins_username }}"
-        password: "{{ jenkins_password }}"
+        user: "admin"
+        password: "admin"
         body_format: json
         body:
          name: "ansible-slave"
