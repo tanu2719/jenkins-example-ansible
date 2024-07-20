@@ -5,8 +5,8 @@
       ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem?name=mynew&type=hudson.slaves.DumbSlave"
         method: POST
-        user: "{{ jenkins_username }}"
-        password: "{{ jenkins_password }}"
+        user: "admin"
+        password: "11a60d0059efd55317827d3477a5d041b3"
       register: result
 
     - debug:
