@@ -18,7 +18,7 @@
         body:
           name: "ansible-slave"
           type: "hudson.slaves.DumbSlave$DescriptorImpl"
-          json: "{{ lookup('file', '/tmp/{{ slave_config_file }}') }}"
+          json: "{{ lookup('file', '/Users/tanushreerakshit/.jenkins/workspace/ansible/{{ slave_config_file }}') }}"
         headers:
           Content-Type: "application/json"
           Authorization: "Basic {{ (jenkins_user + ':' + jenkins_token) | b64encode }}"
