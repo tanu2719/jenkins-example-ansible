@@ -3,7 +3,7 @@
   tasks:
     - name: Create Jenkins Node
       ansible.builtin.uri:
-        url: "{http://localhost:8080/computer/doCreateItem"
+        url: "http://localhost:8080/computer/doCreateItem"
         method: POST
         user: "admin"
         password: "11a60d0059efd55317827d3477a5d041b3"
