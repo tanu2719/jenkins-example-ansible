@@ -6,12 +6,6 @@
     - name: Task 1
       debug:
         msg: "Running on {{ ansible_hostname }}"  
-    - name: Run a command and capture output
-      command: whoami /jenkins
-      register: ls_output
-    - name: Print captured output
-      debug:
-        msg: "Output of 'ls' command: {{ ls_output.stdout }}"
     - name: Install Java
       apt:
         name: openjdk-8-jdk
