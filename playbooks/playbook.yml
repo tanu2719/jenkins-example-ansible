@@ -3,6 +3,9 @@
   connection: local
   gather_facts: yes
   tasks:
+    - name: Task 1
+      debug:
+        msg: "Running on {{ ansible_hostname }}"  
     - name: Run a command and capture output
       command: whoami /jenkins
       register: ls_output
