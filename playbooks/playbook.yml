@@ -3,6 +3,8 @@
   connection: local
   gather_facts: yes
   tasks:
+   - name: Update package cache (alternative method)
+     command: apt-get update
    - name: Install Java
      apt:
         name: openjdk-8-jdk
