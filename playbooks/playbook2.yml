@@ -6,27 +6,18 @@
     jenkins_password: "admin"
     jenkins_token: "11a60d0059efd55317827d3477a5d041b3"
     slave_config_file: "requirements.json"
+    jenkins_node: "my_new3"
   tasks:
     - name: Ensure slave configuration file is present
       ansible.builtin.copy:
         src: "{{ slave_config_file }}"
         dest: "/Users/tanushreerakshit/.jenkins/workspace/ansible"
-    - name: Fetch Jenkins Crumb
-      ansible.builtin.uri:
-        url: "{{ jenkins_url }}/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,%22:%22,//crumb)"
-        method: GET
-        user: "admin"
-        password: "admin"
-        status_code: 200
-      register: crumb_response
     - name: Create Jenkins slave node
       ansible.builtin.uri:
-        url: "{{ jenkins_url }}/computer/doCreateItem"
+        url: "{{jenkins_url}}/computer/doCreateItem?name={{ jenkins_node }}&type=hudson.slaves.DumbSlave"
         method: POST
         user: "admin"
         password: "admin"
-        headers:
-          Jenkins-Crumb: "{{ crumb_response.json | json_query('crumb') }}"
         body_format: json
         body:
          name: "ansible-slave"
