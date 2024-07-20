@@ -4,7 +4,7 @@
   gather_facts: yes
   tasks:
    - name: Update package cache (alternative method)
-     command: apt-get update
+     command: whoami
    - name: Install Java
      apt:
         name: openjdk-8-jdk
