@@ -21,7 +21,7 @@
         body_format: json
         body:
          name: "ansible-slave"
-         type: "hudson.slaves.DumbSlave$DescriptorImpl"
+         #type: "hudson.slaves.DumbSlave$DescriptorImpl"
          json: "{{ lookup('file', '/Users/tanushreerakshit/.jenkins/workspace/ansible/{{ slave_config_file }}') }}"
         status_code: 200  # Define the expected status code if necessary
         validate_certs: no  # Adjust as needed based on your Jenkins setup
