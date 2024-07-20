@@ -3,10 +3,16 @@
   tasks:
     - name: Create Jenkins Node
       ansible.builtin.uri:
-        url: "http://localhost:8080/computer/doCreateItem?name=mynew&type=hudson.slaves.DumbSlave"
+        url: "{http://localhost:8080/computer/doCreateItem"
         method: POST
         user: "admin"
         password: "11a60d0059efd55317827d3477a5d041b3"
+        body_format: form-urlencoded
+        headers:
+          Content-Type: "application/x-www-form-urlencoded"
+        body:
+          name: my_new3
+          type: hudson.slaves.DumbSlave
       register: result
 
     - debug:
