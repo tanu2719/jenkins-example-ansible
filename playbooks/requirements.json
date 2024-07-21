@@ -1,6 +1,6 @@
  {
    "numExecutors": 2,
-   "remoteFS": "/home/jenkins",
+   "remoteFS": "jenkins",
    "labelString": "ansible-agent",
    "mode": "NORMAL",
    "launcher": {
