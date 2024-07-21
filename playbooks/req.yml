@@ -25,10 +25,7 @@
       "stapler-class": "hudson.model.DescriptorList",
       "$class": "hudson.model.DescriptorList"
      }
-}
-
-
-  tasks:
+ tasks:
     - name: Create Jenkins Agent
       ansible.builtin.shell: >
         curl -X POST \
