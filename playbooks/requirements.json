@@ -1,9 +1,8 @@
 {
-  "name": "ansible-slave",
-  "nodeDescription": "Jenkins slave created by Ansible",
-  "numExecutors": 1,
+  "numExecutors": "2",
   "remoteFS": "/home/jenkins",
-  "labels": "ansible",
+  "labelString": "ansible-agent",
+  "mode": "NORMAL",
   "launcher": {
     "stapler-class": "hudson.slaves.JNLPLauncher",
     "$class": "hudson.slaves.JNLPLauncher"
@@ -14,6 +13,9 @@
   },
   "nodeProperties": {
     "stapler-class-bag": "true",
-    "$class": "hudson.model.Hudson$MasterComputer"
+    "hudson-slaves-EnvironmentVariablesNodeProperty": {},
+    "hudson-tools-ToolLocationNodeProperty": {},
+    "stapler-class": "hudson.model.DescriptorList",
+    "$class": "hudson.model.DescriptorList"
   }
 }
