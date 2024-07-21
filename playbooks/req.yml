@@ -25,10 +25,9 @@
       "stapler-class": "hudson.model.DescriptorList",
       "$class": "hudson.model.DescriptorList"
      }
-    }
- tasks:
-    - name: Create Jenkins Agent
-      ansible.builtin.shell: >
+    tasks:
+     - name: Create Jenkins Agent
+       ansible.builtin.shell: >
         curl -X POST \
           -u "{{ admin_username }}:{{ api_token }}" \
           -H "Content-Type: application/x-www-form-urlencoded" \
@@ -36,9 +35,9 @@
           --data-urlencode "type=hudson.slaves.DumbSlave\$DescriptorImpl" \
           --data-urlencode "json={{ agent_config_json }}" \
           "{{ jenkins_url }}/computer/doCreateItem"
-      args:
+       args:
         executable: /bin/bash
-      register: curl_output
+        register: curl_output
 
-    - debug:
+     - debug:
         var: curl_output
