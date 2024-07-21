@@ -20,6 +20,7 @@
           name: "ansible-agent"
           type: "hudson.slaves.DumbSlave$DescriptorImpl"
           json: "{{ lookup('file', slave_config_file) }}"
+          follow_redirects: true
       register: result
 
     - debug:
