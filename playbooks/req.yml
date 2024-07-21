@@ -37,7 +37,7 @@
           "{{ jenkins_url }}/computer/doCreateItem"
        args:
         executable: /bin/bash
-        register: curl_output
+        #register: curl_output
 
      - debug:
         var: curl_output
