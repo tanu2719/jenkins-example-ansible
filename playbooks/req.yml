@@ -13,6 +13,6 @@
          --data-urlencode "name=ansible-agent" \
          --data-urlencode "type=hudson.slaves.DumbSlave\$DescriptorImpl" \
          --data-urlencode "json=@{{ agent_config_file }}" \
-         http://localhost:8080/computer/doCreateItem
+         "{{ jenkins_url }}/computer/doCreateItem"
     - debug:
         var: result
