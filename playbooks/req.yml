@@ -15,8 +15,8 @@
           "$class": "hudson.slaves.JNLPLauncher"
         },
         "retentionStrategy": {
-          "stapler-class": "hudson.slaves.RetentionStrategy",
-          "$class": "hudson.slaves.RetentionStrategy"
+          "stapler-class": "hudson.slaves.RetentionStrategy\$Always\",
+          "$class": "hudson.slaves.RetentionStrategy\$Always\"
         },
         "nodeProperties": {
           "stapler-class-bag": "true",
@@ -39,3 +39,11 @@
           "{{ jenkins_url }}/computer/doCreateItem"
       args:
         executable: /bin/bash
+
+
+
+
+
+
+
+
