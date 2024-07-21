@@ -3,7 +3,7 @@
   vars:
     jenkins_url: "http://localhost:8080"
     admin_username: "tanu"
-    api_token: "11ef3631aaea761092fe8875d0ad78cc5a"
+    api_token: "117dc0d2ba3703290fa5aacf4612ce2f6d"
     slave_config_file: "requirements.json"
 
   tasks:
