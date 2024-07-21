@@ -18,7 +18,7 @@
         body:
           name: "ansible-agent"
           type: "hudson.slaves.DumbSlave$DescriptorImpl"
-          json: "{{ lookup('file', '/path/to/{{ slave_config_file }}') }}"
+          json: "{{ lookup('file', '{{ slave_config_file }}') }}"
       register: result
 
     - debug:
