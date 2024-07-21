@@ -5,7 +5,7 @@
     jenkins_url: "http://localhost:8080"
     admin_username: "admin"
     api_token: "11f6d1065b82b7f6cbb1962ca8302d02b6"
-    slave_config_file: "working_req.json"
+    slave_config_file: "requirements.json"
 
   tasks:
     - name: Create Jenkins agent node
