@@ -17,7 +17,7 @@
           Authorization: "Basic {{ (admin_username + ':' + api_token) | b64encode }}"
         body_format: form-urlencoded
         body:
-          name: "ansible-agent"
+          name: "ansible-agent2"
           type: "hudson.slaves.DumbSlave$DescriptorImpl"
           json: "{{ lookup('file', slave_config_file) }}"
         follow_redirects: true
