@@ -14,7 +14,7 @@
         method: POST
         headers:
           Content-Type: "application/x-www-form-urlencoded"
-          Authorization: "Basic {{ admin_username }}:{{ api_token | b64encode }}"
+          Authorization: "Basic {{ (admin_username + ':' + api_token) | b64encode }}"
         body_format: form-urlencoded
         body:
           name: "ansible-agent"
