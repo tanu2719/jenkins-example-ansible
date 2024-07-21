@@ -1,42 +1,25 @@
----
-- name: Create Jenkins Agent
+- name: Create Jenkins Agent Node
   hosts: localhost
+  vars:
+    jenkins_url: "http://localhost:8080"
+    admin_username: "tanu"
+    api_token: "11ef3631aaea761092fe8875d0ad78cc5a"
+    slave_config_file: "requirements.json"
+
   tasks:
-    - name: Create Jenkins Agent
-      uri:
-        url: "http://localhost:8080/computer/doCreateItem"
+    - name: Create Jenkins agent node
+      ansible.builtin.uri:
+        url: "{{ jenkins_url }}/computer/doCreateItem"
         method: POST
         headers:
           Content-Type: "application/x-www-form-urlencoded"
-          Authorization: "tanu-jenkins-api-token"
+          Authorization: "Basic {{ admin_username }}:{{ api_token | b64encode }}"
         body_format: form-urlencoded
         body:
-          name: ansible-agent
+          name: "ansible-agent"
           type: "hudson.slaves.DumbSlave$DescriptorImpl"
-          json: |
-            {
-              "numExecutors": "2",
-              "remoteFS": "/home/jenkins",
-              "labelString": "ansible-agent",
-              "mode": "NORMAL",
-              "launcher": {
-                "stapler-class": "hudson.slaves.JNLPLauncher",
-                "$class": "hudson.slaves.JNLPLauncher"
-              },
-              "retentionStrategy": {
-                "stapler-class": "hudson.slaves.RetentionStrategy$Always",
-                "$class": "hudson.slaves.RetentionStrategy$Always"
-              },
-              "nodeProperties": {
-                "stapler-class-bag": "true",
-                "hudson-slaves-EnvironmentVariablesNodeProperty": {},
-                "hudson-tools-ToolLocationNodeProperty": {},
-                "stapler-class": "hudson.model.DescriptorList",
-                "$class": "hudson.model.DescriptorList"
-              }
-            }
-      register: response
+          json: "{{ lookup('file', '/path/to/{{ slave_config_file }}') }}"
+      register: result
 
     - debug:
-        var: response
-
+        var: result
