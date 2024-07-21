@@ -4,7 +4,6 @@
   vars:
     jenkins_url: "http://localhost:8080"
     admin_username: "admin"
-    #api_token: "jenkins-admin-api-token"
     slave_config_file: "requirements.json"
 
   tasks:
@@ -14,9 +13,12 @@
         method: POST
         headers:
           Content-Type: "application/x-www-form-urlencoded"
+        #step to directly pass api-token
           #Authorization: "Basic {{ (admin_username + ':' + api_token) | b64encode }}"
+         #step to directly pass api-token from hashicorp vault
+          #Authorization: "Basic {{ (admin_username + ':' + lookup('hashi_vault', 'jenkins-admin-api-token')) | b64encode }}"
+        # step to pass api token using jenkins-> global_environment
           Authorization: "Basic {{ (admin_username + ':' + lookup('env', 'jenkins-admin-api-token')) | b64encode }}"
-          #Authorization: "Basic {{ admin_username }}:{{ lookup('env', 'JENKINS_API_TOKEN') | b64encode }}"
         body_format: form-urlencoded
         body:
           name: "ansible-agent2"
