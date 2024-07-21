@@ -5,29 +5,31 @@
     api_token: "11a60d0059efd55317827d3477a5d041b3"
     agent_name: "ansible-agent"
     agent_config_json: |
-     {
-       "numExecutors": "2",
-       "remoteFS": "/home/jenkins",
-       "labelString": "ansible-agent",
-       "mode": "NORMAL",
-       "launcher": {
+      {
+        "numExecutors": "2",
+        "remoteFS": "/home/jenkins",
+        "labelString": "ansible-agent",
+        "mode": "NORMAL",
+        "launcher": {
           "stapler-class": "hudson.slaves.JNLPLauncher",
           "$class": "hudson.slaves.JNLPLauncher"
-     },
-     "retentionStrategy": {
-      "stapler-class": "hudson.slaves.RetentionStrategy",
-      "$class": "hudson.slaves.RetentionStrategy"
-     },
-     "nodeProperties": {
-      "stapler-class-bag": "true",
-      "hudson-slaves-EnvironmentVariablesNodeProperty": {},
-      "hudson-tools-ToolLocationNodeProperty": {},
-      "stapler-class": "hudson.model.DescriptorList",
-      "$class": "hudson.model.DescriptorList"
-     }
+        },
+        "retentionStrategy": {
+          "stapler-class": "hudson.slaves.RetentionStrategy",
+          "$class": "hudson.slaves.RetentionStrategy"
+        },
+        "nodeProperties": {
+          "stapler-class-bag": "true",
+          "hudson-slaves-EnvironmentVariablesNodeProperty": {},
+          "hudson-tools-ToolLocationNodeProperty": {},
+          "stapler-class": "hudson.model.DescriptorList",
+          "$class": "hudson.model.DescriptorList"
+        }
+      }
+
   tasks:
-     - name: Create Jenkins Agent
-       ansible.builtin.shell: >
+    - name: Create Jenkins Agent
+      ansible.builtin.shell: >
         curl -X POST \
           -u "{{ admin_username }}:{{ api_token }}" \
           -H "Content-Type: application/x-www-form-urlencoded" \
@@ -35,4 +37,5 @@
           --data-urlencode "type=hudson.slaves.DumbSlave\$DescriptorImpl" \
           --data-urlencode "json={{ agent_config_json }}" \
           "{{ jenkins_url }}/computer/doCreateItem"
-
+      args:
+        executable: /bin/bash
