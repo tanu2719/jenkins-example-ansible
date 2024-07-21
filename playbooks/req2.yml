@@ -4,7 +4,7 @@
   vars:
     jenkins_url: "http://localhost:8080"
     admin_username: "admin"
-    api_token: "11f6d1065b82b7f6cbb1962ca8302d02b6"
+    api_token: "11dc78014b3b6e423db0422d4d2ea1fd3b"
     slave_config_file: "requirements.json"
 
   tasks:
