@@ -1,0 +1,30 @@
+ {
+   "numExecutors": 2,
+   "remoteFS": "jenkins",
+   "labelString": "ansible-agent",
+   "mode": "NORMAL",
+   "launcher": {
+     "$class": "hudson.plugins.sshslaves.SSHLauncher",
+     "stapler-class": "hudson.plugins.sshslaves.SSHLauncher",
+     "host": "192.168.1.105",
+     "port": "22",
+     "credentialsId": "ubuntu_ssh",
+     "javaPath": "",
+     "prefixStartSlaveCmd": "",
+     "suffixStartSlaveCmd": "",
+     "launchTimeoutSeconds": "60",
+     "maxNumRetries": "10",
+     "retryWaitTime": "15"  
+    },
+    "retentionStrategy": {
+      "$class": "hudson.slaves.RetentionStrategy$Always",
+      "stapler-class": "hudson.slaves.RetentionStrategy$Always"
+    },
+    "nodeProperties": {
+      "$class": "hudson.model.DescriptorList",
+      "hudson-slaves-EnvironmentVariablesNodeProperty": {},
+      "hudson-tools-ToolLocationNodeProperty": {},
+      "stapler-class": "hudson.model.DescriptorList",
+      "stapler-class-bag": "true"
+    }
+  }
