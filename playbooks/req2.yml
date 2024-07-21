@@ -1,40 +1,46 @@
 - hosts: localhost
   tasks:
     - name: Retrieve Jenkins Crumb Token
-      command: "curl -s 'http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)'"
-      register: crumb_output
+      uri:
+        url: "http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)"
+        method: GET
+        register: crumb_output
+
     - name: Create Jenkins Agent
-      ansible.builtin.command: >
-        curl -X POST -u "admin:11a60d0059efd55317827d3477a5d041b3" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -H "{{ crumb_output.stdout }}" \
-          --data-urlencode "name=ansible-agent" \
-          --data-urlencode "type=hudson.slaves.DumbSlave\$DescriptorImpl" \
-          --data-urlencode "json={
-            \"numExecutors\": \"2\",
-            \"remoteFS\": \"/home/jenkins\",
-            \"labelString\": \"ansible-agent\",
-            \"mode\": \"NORMAL\",
-            \"launcher\": {
-              \"stapler-class\": \"hudson.slaves.JNLPLauncher\",
-              \"\$class\": \"hudson.slaves.JNLPLauncher\"
-            },
-            \"retentionStrategy\": {
-              \"stapler-class\": \"hudson.slaves.RetentionStrategy\$Always\",
-              \"\$class\": \"hudson.slaves.RetentionStrategy\$Always\"
-            },
-            \"nodeProperties\": {
-              \"stapler-class-bag\": \"true\",
-              \"hudson-slaves-EnvironmentVariablesNodeProperty\": {},
-              \"hudson-tools-ToolLocationNodeProperty\": {},
-              \"stapler-class\": \"hudson.model.DescriptorList\",
-              \"\$class\": \"hudson.model.DescriptorList\"
+      uri:
+        url: "http://localhost:8080/computer/doCreateItem"
+        method: POST
+        headers:
+          Content-Type: "application/x-www-form-urlencoded"
+          Authorization: "Basic YWRtaW46MTFhNjBkMDA1OWVmZDU1MzE3ODI3ZDM0NzdhNWQwNDFiMw=="
+          "{{ crumb_output.content }}"
+        body_format: form-urlencoded
+        body:
+          name: ansible-agent
+          type: hudson.slaves.DumbSlave\$DescriptorImpl
+          json: |
+            {
+              "numExecutors": "2",
+              "remoteFS": "/home/jenkins",
+              "labelString": "ansible-agent",
+              "mode": "NORMAL",
+              "launcher": {
+                "stapler-class": "hudson.slaves.JNLPLauncher",
+                "$class": "hudson.slaves.JNLPLauncher"
+              },
+              "retentionStrategy": {
+                "stapler-class": "hudson.slaves.RetentionStrategy\$Always",
+                "$class": "hudson.slaves.RetentionStrategy\$Always"
+              },
+              "nodeProperties": {
+                "stapler-class-bag": "true",
+                "hudson-slaves-EnvironmentVariablesNodeProperty": {},
+                "hudson-tools-ToolLocationNodeProperty": {},
+                "stapler-class": "hudson.model.DescriptorList",
+                "$class": "hudson.model.DescriptorList"
+              }
             }
-          }" \
-          "http://localhost:8080/computer/doCreateItem"
-      args:
-        executable: /bin/bash
-      register: curl_output
+      register: response
 
     - debug:
-        var: curl_output
+        var: response
