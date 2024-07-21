@@ -1,9 +1,13 @@
 - hosts: localhost
   tasks:
+    - name: Retrieve Jenkins Crumb Token
+      command: "curl -s 'http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)'"
+      register: crumb_output
     - name: Create Jenkins Agent
       ansible.builtin.command: >
         curl -X POST -u "admin:11a60d0059efd55317827d3477a5d041b3" \
           -H "Content-Type: application/x-www-form-urlencoded" \
+          -H "{{ crumb_output.stdout }}" \
           --data-urlencode "name=ansible-agent" \
           --data-urlencode "type=hudson.slaves.DumbSlave\$DescriptorImpl" \
           --data-urlencode "json={
