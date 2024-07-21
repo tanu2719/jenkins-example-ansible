@@ -15,11 +15,11 @@
         method: POST
         headers:
           Content-Type: "application/x-www-form-urlencoded"
-          "{{ crumb_output.content.split(': ')[0] }}": "{{ crumb_output.content.split(': ')[1] }}"
+          "{{ crumb_output['json']['crumbRequestField'] }}": "{{ crumb_output['json']['crumb'] }}"
         body_format: form-urlencoded
         body:
           name: ansible-agent
-          type: "hudson.slaves.DumbSlave$DescriptorImpl"  # Corrected line
+          type: "hudson.slaves.DumbSlave$DescriptorImpl"  # Corrected escape sequence here
           json: "{\"numExecutors\":\"2\",\"remoteFS\":\"/home/jenkins\",\"labelString\":\"ansible-agent\",\"mode\":\"NORMAL\",\"launcher\":{\"stapler-class\":\"hudson.slaves.JNLPLauncher\",\"$class\":\"hudson.slaves.JNLPLauncher\"},\"retentionStrategy\":{\"stapler-class\":\"hudson.slaves.RetentionStrategy$Always\",\"$class\":\"hudson.slaves.RetentionStrategy$Always\"},\"nodeProperties\":{\"stapler-class-bag\":\"true\",\"hudson-slaves-EnvironmentVariablesNodeProperty\":{},\"hudson-tools-ToolLocationNodeProperty\":{},\"stapler-class\":\"hudson.model.DescriptorList\",\"$class\":\"hudson.model.DescriptorList\"}}"
       register: response
 
