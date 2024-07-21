@@ -1,28 +1,42 @@
-- hosts: localhost
+---
+- name: Create Jenkins Agent
+  hosts: localhost
   tasks:
-    - name: Retrieve Jenkins Crumb Token
-      uri:
-        url: "http://localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)"
-        method: GET
-        headers:
-          Accept: "application/xml"
-          Authorization: "Basic YWRtaW46MTFhNjBkMDA1OWVmZDU1MzE3ODI3ZDM0NzdhNWQwNDFiMw=="
-      register: crumb_output
-
     - name: Create Jenkins Agent
       uri:
         url: "http://localhost:8080/computer/doCreateItem"
         method: POST
         headers:
           Content-Type: "application/x-www-form-urlencoded"
-          "{{ crumb_output['json']['crumbRequestField'] }}": "{{ crumb_output['json']['crumb'] }}"
+          Authorization: "11a60d0059efd55317827d3477a5d041b3"
         body_format: form-urlencoded
         body:
           name: ansible-agent
-          type: "hudson.slaves.DumbSlave$DescriptorImpl"  # Corrected escape sequence here
-          json: "{\"numExecutors\":\"2\",\"remoteFS\":\"/home/jenkins\",\"labelString\":\"ansible-agent\",\"mode\":\"NORMAL\",\"launcher\":{\"stapler-class\":\"hudson.slaves.JNLPLauncher\",\"$class\":\"hudson.slaves.JNLPLauncher\"},\"retentionStrategy\":{\"stapler-class\":\"hudson.slaves.RetentionStrategy$Always\",\"$class\":\"hudson.slaves.RetentionStrategy$Always\"},\"nodeProperties\":{\"stapler-class-bag\":\"true\",\"hudson-slaves-EnvironmentVariablesNodeProperty\":{},\"hudson-tools-ToolLocationNodeProperty\":{},\"stapler-class\":\"hudson.model.DescriptorList\",\"$class\":\"hudson.model.DescriptorList\"}}"
+          type: "hudson.slaves.DumbSlave$DescriptorImpl"
+          json: |
+            {
+              "numExecutors": "2",
+              "remoteFS": "/home/jenkins",
+              "labelString": "ansible-agent",
+              "mode": "NORMAL",
+              "launcher": {
+                "stapler-class": "hudson.slaves.JNLPLauncher",
+                "$class": "hudson.slaves.JNLPLauncher"
+              },
+              "retentionStrategy": {
+                "stapler-class": "hudson.slaves.RetentionStrategy$Always",
+                "$class": "hudson.slaves.RetentionStrategy$Always"
+              },
+              "nodeProperties": {
+                "stapler-class-bag": "true",
+                "hudson-slaves-EnvironmentVariablesNodeProperty": {},
+                "hudson-tools-ToolLocationNodeProperty": {},
+                "stapler-class": "hudson.model.DescriptorList",
+                "$class": "hudson.model.DescriptorList"
+              }
+            }
       register: response
 
     - debug:
         var: response
-        var: crumb_output
+
