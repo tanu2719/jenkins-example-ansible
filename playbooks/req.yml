@@ -3,15 +3,16 @@
     jenkins_url: "http://localhost:8080"
     admin_username: "admin"
     api_token: "11a60d0059efd55317827d3477a5d041b3"
+    gent_config_file: :requirements.json" 
   tasks:
     - name: Create Jenkins slave node
       ansible.builtin.shell:
          curl -X POST \
          -u admin:11a60d0059efd55317827d3477a5d041b3 \
-         -H "Content-Type: application/x-www-form-urlencoded" \
+         -H Content-Type:application/x-www-form-urlencoded \
          --data-urlencode "name=ansible-agent" \
          --data-urlencode "type=hudson.slaves.DumbSlave\$DescriptorImpl" \
-         --data-urlencode "json={\"numExecutors\":\"2\",\"remoteFS\":\"/home/jenkins\",\"labelString\":\"ansible-agent\",\"mode\":\"NORMAL\",\"launcher\":{\"stapler-class\":	\"hudson.slaves.JNLPLauncher\",\"\$class\":\"hudson.slaves.JNLPLauncher\"},\"retentionStrategy\":{\"stapler-class\":\"hudson.slaves.RetentionStrategy\$Always\",\"\$class\":	\"hudson.slaves.RetentionStrategy\$Always\"},\"nodeProperties\":{\"stapler-class-bag\":\"true\",\"hudson-slaves-EnvironmentVariablesNodeProperty\":{},\"hudson-tools-	ToolLocationNodeProperty\":{},\"stapler-class\":\"hudson.model.DescriptorList\",\"\$class\":\"hudson.model.DescriptorList\"}}" \
+        --data-urlencode "json=@{{ agent_config_file }}" \
          http://localhost:8080/computer/doCreateItem
     - debug:
         var: result
