@@ -1,21 +1,21 @@
-{
-  "numExecutors": "2",
-  "remoteFS": "/home/jenkins",
-  "labelString": "ansible-agent",
-  "mode": "NORMAL",
-  "launcher": {
-    "stapler-class": "hudson.slaves.JNLPLauncher",
-    "$class": "hudson.slaves.JNLPLauncher"
-  },
-  "retentionStrategy": {
-    "stapler-class": "hudson.slaves.RetentionStrategy$Always",
-    "$class": "hudson.slaves.RetentionStrategy$Always"
-  },
-  "nodeProperties": {
-    "stapler-class-bag": "true",
-    "hudson-slaves-EnvironmentVariablesNodeProperty": {},
-    "hudson-tools-ToolLocationNodeProperty": {},
-    "stapler-class": "hudson.model.DescriptorList",
-    "$class": "hudson.model.DescriptorList"
+  {
+    "numExecutors": 2,
+    "remoteFS": "/home/jenkins",
+    "labelString": "ansible-agent",
+    "mode": "NORMAL",
+    "launcher": {
+      "$class": "hudson.slaves.JNLPLauncher",
+      "stapler-class": "hudson.slaves.JNLPLauncher"
+    },
+    "retentionStrategy": {
+      "$class": "hudson.slaves.RetentionStrategy$Always",
+      "stapler-class": "hudson.slaves.RetentionStrategy$Always"
+    },
+    "nodeProperties": {
+      "$class": "hudson.model.DescriptorList",
+      "hudson-slaves-EnvironmentVariablesNodeProperty": {},
+      "hudson-tools-ToolLocationNodeProperty": {},
+      "stapler-class": "hudson.model.DescriptorList",
+      "stapler-class-bag": "true"
+    }
   }
-}
