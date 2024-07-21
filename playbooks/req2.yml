@@ -1,9 +1,8 @@
 - hosts: localhost
   tasks:
     - name: Create Jenkins Agent
-      ansible.builtin.command:
-        _raw_params: >
-          curl -X POST -u "admin:11a60d0059efd55317827d3477a5d041b3" \
+      ansible.builtin.command: >
+        curl -X POST -u "admin:11a60d0059efd55317827d3477a5d041b3" \
           -H "Content-Type: application/x-www-form-urlencoded" \
           --data-urlencode "name=ansible-agent" \
           --data-urlencode "type=hudson.slaves.DumbSlave\$DescriptorImpl" \
@@ -31,7 +30,7 @@
           "http://localhost:8080/computer/doCreateItem"
       args:
         executable: /bin/bash
-      register: command_result
+      register: curl_output
 
     - debug:
-        var: command_result
+        var: curl_output
