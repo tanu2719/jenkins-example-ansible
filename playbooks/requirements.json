@@ -1,11 +1,20 @@
  {
-    "numExecutors": 2,
-    "remoteFS": "/home/jenkins",
-    "labelString": "ansible-agent",
-    "mode": "NORMAL",
-    "launcher": {
-      "$class": "hudson.slaves.JNLPLauncher",
-      "stapler-class": "hudson.slaves.JNLPLauncher"
+   "numExecutors": 2,
+   "remoteFS": "/home/jenkins",
+   "labelString": "ansible-agent",
+   "mode": "NORMAL",
+   "launcher": {
+     "$class": "hudson.plugins.sshslaves.SSHLauncher",
+     "stapler-class": "hudson.plugins.sshslaves.SSHLauncher",
+     "host": "192.168.1.105",
+     "port": "22",
+     "credentialsId": "ubuntu_ssh",
+     "javaPath": "",
+     "prefixStartSlaveCmd": "",
+     "suffixStartSlaveCmd": "",
+     "launchTimeoutSeconds": "60",
+     "maxNumRetries": "10",
+     "retryWaitTime": "15"  
     },
     "retentionStrategy": {
       "$class": "hudson.slaves.RetentionStrategy$Always",
