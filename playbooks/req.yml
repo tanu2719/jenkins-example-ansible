@@ -14,5 +14,4 @@
          --data-urlencode "type=hudson.slaves.DumbSlave\$DescriptorImpl" \
          --data-urlencode "json=@{{ agent_config_file }}" \
          "{{ jenkins_url }}/computer/doCreateItem"
-    - debug:
-        var: result
+
