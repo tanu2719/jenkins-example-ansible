@@ -6,9 +6,9 @@
    "launcher": {
      "$class": "hudson.plugins.sshslaves.SSHLauncher",
      "stapler-class": "hudson.plugins.sshslaves.SSHLauncher",
-     "host": "192.168.1.105",
+     "host": "192.168.64.3",
      "port": "22",
-     "credentialsId": "ubuntu_ssh",
+     "credentialsId": "linux_un_pass",
      "javaPath": "",
      "prefixStartSlaveCmd": "",
      "suffixStartSlaveCmd": "",
