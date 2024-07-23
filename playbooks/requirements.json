@@ -4,13 +4,11 @@
    "labelString": "ansible-agent",
    "mode": "NORMAL",
    "launcher": {
-     // hudson.remoting.jnlp.Main
-     // hudson.plugins.sshslaves.SSHLauncher
-     "$class": "hudson.remoting.jnlp.Main",
-     "stapler-class": "hudson.remoting.jnlp.Main",
+     "$class": "hudson.plugins.sshslaves.SSHLauncher",
+     "stapler-class": "hudson.plugins.sshslaves.SSHLauncher",
      "host": "192.168.64.3",
      "port": "22",
-     "credentialsId": "linux_un_pass",
+     "credentialsId": "T",
      "javaPath": "",
      "prefixStartSlaveCmd": "",
      "suffixStartSlaveCmd": "",
