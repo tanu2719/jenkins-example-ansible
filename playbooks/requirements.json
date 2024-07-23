@@ -6,7 +6,7 @@
    "launcher": {
      // hudson.remoting.jnlp.Main
      // hudson.plugins.sshslaves.SSHLauncher
-     "$class": "udson.remoting.jnlp.Main",
+     "$class": "hudson.remoting.jnlp.Main",
      "stapler-class": "hudson.remoting.jnlp.Main",
      "host": "192.168.64.3",
      "port": "22",
