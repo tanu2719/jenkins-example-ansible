@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+
+  
   tasks:
    - name: print jenkins api token using lookup()
      debug:
@@ -9,8 +11,6 @@
         msg: "Jenkins id {{lookup('env','linux_un_pass')}}"
    - name: print jenkins api token using ansible_env
      debug:
-      msg: |
-           "Jenkins api token using ansible.env {{ansible_env.BUILD_NUMBER}}"
-           "Jenkins api token using ansible.env {{ansible_env.jenkins-admin-api-token}}"
+      msg: "Jenkins api token using ansible.env {{ansible_env.BUILD_NUMBER}}"
 
     
