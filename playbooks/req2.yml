@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   vars:
-    JENKINS_API_TOKEN : "jenkins-admin-api-token"
+    JENKINS_API_TOKEN : "$jenkins-admin-api-token"
   
   tasks:
    - name: print jenkins api token using lookup()
