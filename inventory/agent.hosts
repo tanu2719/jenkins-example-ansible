@@ -5,5 +5,5 @@
 [localhosts:vars]
 #ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 ansible_python_interpreter=/usr/bin/python3
-agent_name=anisble-agent
+agent_name=ansible-agent
 
