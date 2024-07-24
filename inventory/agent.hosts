@@ -1,5 +1,5 @@
 [localhosts]
-192.168.64.3 ansible_password=$linux_un_pass
+192.168.64.3 ansible_password= ${linux_un_pass}
 
 
 [localhosts:vars]
