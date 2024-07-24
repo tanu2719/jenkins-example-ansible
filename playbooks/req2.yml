@@ -10,7 +10,7 @@
    - name: print jenkins api token using ansible_env
      debug:
       msg: |
-           "Jenkins api token using ansible.env {{ansible_env.jenkins-admin-api-token}}"
+           "Jenkins api token using ansible.env {{ansible_env.BUILD_NUMBER}}"
            "Jenkins api token using ansible.env {{ansible_env.BUILD_NUMBER}}"
 
     
