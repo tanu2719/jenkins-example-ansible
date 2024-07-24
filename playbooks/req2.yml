@@ -6,4 +6,4 @@
        msg: "Jenkins id is {{lookup('env','jenkins-admin-api-token')}}"
    - name: print jenkins ID
      debug:
-        msg: "Jenkins id {{lookup('env','linux_un_pass'}}"
+        msg: "Jenkins id {{lookup('env','linux_un_pass')}}"
