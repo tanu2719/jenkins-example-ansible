@@ -11,6 +11,6 @@
      debug:
       msg: |
            "Jenkins api token using ansible.env {{ansible_env.jenkins-admin-api-token}}"
-           "Jenkins api token using ansible.env {{ansible_env.BUILD_NUMBER}"
+           "Jenkins api token using ansible.env {{ansible_env.BUILD_NUMBER}}"
 
     
