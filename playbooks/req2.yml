@@ -1,3 +1,7 @@
+#lookup() method is actually used to look at resources outside of host system running ansible i.e either remote systems or vaults and instead
+#lookup() ,ansible_env should be used to fetch jenkins env vars or credentials if jenkins master and ansible is running in same machine
+#but ansible_env is failing to fetch jenkins api token.
+
 ---
 - hosts: localhost
   tasks:
