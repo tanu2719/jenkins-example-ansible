@@ -8,7 +8,7 @@
     slave_config_file: "requirements.json"
   tasks:
     - name: dummy task create directory
-      ansible.buildin.file:
+      ansible.builtin.file:
         src: /home/new_dir
         state: directory
 
