@@ -1,31 +1,10 @@
 ---
-- name: Create Jenkins Agent Node
-  hosts: localhost
-  vars:
-    jenkins_url: "http://localhost:8080"
-    admin_username: "admin"
-    slave_config_file: "requirements.json"
-
+- hosts: localhost
   tasks:
-    - name: Create Jenkins agent node
-      ansible.builtin.uri:
-        url: "{{ jenkins_url }}/computer/doCreateItem"
-        method: POST
-        headers:
-          Content-Type: "application/x-www-form-urlencoded"
-        #step to directly pass api-token
-          #Authorization: "Basic {{ (admin_username + ':' + api_token) | b64encode }}"
-         #step to directly pass api-token from hashicorp vault
-          #Authorization: "Basic {{ (admin_username + ':' + lookup('hashi_vault', 'jenkins-admin-api-token')) | b64encode }}"
-        # step to pass api token using jenkins-> global_environment
-          Authorization: "Basic {{ (admin_username + ':' + lookup('env', 'jenkins-admin-api-token')) | b64encode }}"
-        body_format: form-urlencoded
-        body:
-          name: "ansible-agent2"
-          type: "hudson.slaves.DumbSlave$DescriptorImpl"
-          json: "{{ lookup('file', slave_config_file) }}"
-        follow_redirects: true
-      register: result
+   -name: print jenkins api token
+   debug:
+    msg: "Jenkins id is {{lookup('env','jenkins-admin-api-token')}}"
 
-    - debug:
-        var: result
+  -name: print jenkins ID
+  debug:
+     msg: "Jenkins id {{lookup('env','linux_un_pass'}}"
