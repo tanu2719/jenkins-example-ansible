@@ -1,5 +1,6 @@
 [localhosts]
-192.168.64.3 ansible_user=tanu ansible_ssh_private_key_file=//Users/tanushreerakshit/.ssh/id_ed25519
+ansible_host=192.168.64.3 ansible_user=tanu ansible_password=linux
+
 
 
 [localhosts:vars]
