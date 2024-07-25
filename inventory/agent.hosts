@@ -1,5 +1,5 @@
-[all]
-192.168.64.3 ansible_password={{ lookup('env', 'linux_un_pass') }} 
+[localhosts]
+192.168.1.105 ansible_user=ubuntu ansible_password=ubuntu
 
-[all:vars]
+[localhosts:vars]
 ansible_python_interpreter=/usr/bin/python3
