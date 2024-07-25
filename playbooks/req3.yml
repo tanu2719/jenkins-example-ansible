@@ -9,9 +9,6 @@
     host_username: lookup('hashi_vault','secret=secret/jenkins field=username')
     host_password: lookup('hashi_vault','secret=secret/jenkins field=password')
   tasks:
-    - name: print user and passwoed from hashi vault
-      debug:
-        msg: "user is {{host_username}} pass is {{host_password}}"
     - name: dummy task create directory
       ansible.builtin.file:
         src: /home/new_dir
