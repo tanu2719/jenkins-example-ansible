@@ -1,29 +1,23 @@
 ---
 - name: Create Jenkins Agent Node
-  hosts: localhosts
-  become: true   #allows ansible to run tasks with root privledges i.e with sudo
+  hosts: localhost
   vars:
     jenkins_url: "http://localhost:8080"
-    jenkins_username : "admin"
+    admin_username: "admin"
+    api_token: "jenkins-admin-api-token"
     slave_config_file: "requirements.json"
-    #host_username: lookup('hashi_vault','secret=secret/jenkins field=username')
-    #host_password: lookup('hashi_vault','secret=secret/jenkins field=password')
-  tasks:
-    - name: dummy task create directory
-      ansible.builtin.file:
-        src: /home/new_dir
-        state: directory
 
+  tasks:
     - name: Create Jenkins agent node
       ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
         method: POST
         headers:
           Content-Type: "application/x-www-form-urlencoded"
-          Authorization: "Basic {{ (jenkins_username + ':' + lookup('env', 'jenkins-admin-api-token')) | b64encode }}"
+          Authorization: "Basic {{ (admin_username + ':' + api_token) | b64encode }}"
         body_format: form-urlencoded
         body:
-          name: "{{agent_name}}"
+          name: "ansible-agent2"
           type: "hudson.slaves.DumbSlave$DescriptorImpl"
           json: "{{ lookup('file', slave_config_file) }}"
         follow_redirects: true
