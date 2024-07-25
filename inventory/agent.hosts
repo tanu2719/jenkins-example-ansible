@@ -1,5 +1,5 @@
 [localhosts]
-192.168.64.3 ansible_connection=ssh ansible_password={'T'}
+ansible_host=192.168.64.3 ansible_connection=paramiko ansible_user=tanu ansible_ssh_pass=linux
 
 [localhosts:vars]
 ansible_python_interpreter=/usr/bin/python3
