@@ -1,5 +1,5 @@
 [localhosts]
-192.168.64.3 ansible_password=${T}
+192.168.64.3 ansible_password=${{T}}
 
 
 [localhosts:vars]
