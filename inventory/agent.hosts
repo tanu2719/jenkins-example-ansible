@@ -1,5 +1,5 @@
 [localhosts]
- ansible_host=192.168.64.3 ansible_user=tanu ansible_password=linux
+192.168.64.3 ansible_user=tanu ansible_password=linux
 
 
 [localhosts:vars]
