@@ -6,6 +6,8 @@
     jenkins_url: "http://localhost:8080"
     jenkins_username : "admin"
     slave_config_file: "requirements.json"
+    host_username: lookup('hashi_vault','secret=secret/jenkins field=username')
+    host_password: lookup('hashi_vault','secret=secret/jenkins field=password')
   tasks:
     - name: print user and passwoed from hashi vault
       debug:
