@@ -5,6 +5,8 @@
 [localhosts:vars]
 #ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 ansible_python_interpreter=/usr/bin/python3
-agent_name=ansible-agent
-ansible_password= {{lookup('env', 'linux_un_pass')}}
+#agent_name=ansible-agent
+#ansible_password= {{lookup('env', 'linux_un_pass')}}
+host_username= {{lookup('hashi_vault','secret=secret/jenkins field=username')}}
+host_password={{lookup('hashi_vault','secret=secret/jenkins field=password')}}
 
