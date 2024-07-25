@@ -1,6 +1,6 @@
 ---
 - name: Create Jenkins Agent Node
-  hosts: localhosts
+  hosts: all
   become: true   #allows ansible to run tasks with root privledges i.e with sudo
   vars:
     jenkins_url: "http://localhost:8080"
