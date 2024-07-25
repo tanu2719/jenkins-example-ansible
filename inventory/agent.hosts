@@ -1,5 +1,7 @@
 [localhosts]
-192.168.64.3 ansible_user=tanu ansible_password=linux
+192.168.64.3
 
 [localhosts:vars]
 ansible_python_interpreter=/usr/bin/python3
+ansible_user={{lookup('hashi_vault','secret=secret/path field=username')}}
+ansible_user={{lookup('hashi_vault','secret=secret/path field=password')}}
