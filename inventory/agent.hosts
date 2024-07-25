@@ -1,5 +1,5 @@
 [all]
-192.168.64.3 ansible_connection=local ansible_user=tanu ansible_ssh_pass=linux
+192.168.64.3 ansible_connection=local ansible_user=tanu ansible_pass=linux
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
