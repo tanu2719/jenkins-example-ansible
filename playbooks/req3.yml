@@ -7,6 +7,9 @@
     jenkins_username : "admin"
     slave_config_file: "requirements.json"
   tasks:
+    - name: print user and passwoed from hashi vault
+      debug:
+        msg: "user is {{host_username}} pass is {{host_password}}"
     - name: dummy task create directory
       ansible.builtin.file:
         src: /home/new_dir
