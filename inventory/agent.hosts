@@ -1,5 +1,5 @@
 [all]
-192.168.64.3 ansible_password=$linux_un_pass
+192.168.64.3 ansible_password={{ lookup('env', 'linux_un_pass') }} 
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
