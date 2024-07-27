@@ -19,6 +19,6 @@
 
     - name: Show the retrieved secret
       debug:
-        msg: "The value of the secret is {{ response.json.data.value }}"
+        msg: "The value of the secret is {{ response.json.data.username }}"
 
 
