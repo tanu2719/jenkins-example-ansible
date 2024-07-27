@@ -2,6 +2,7 @@
 - name: Create Jenkins Agent Node
   hosts: localhost
   gather_facts: no
+
   vars:
     jenkins_url: "http://localhost:8080"
     admin_username: "admin"
@@ -9,6 +10,8 @@
     secret_password: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=linux-password') }}"
     api_token: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=jenkins-api-token') }}"
     slave_config_file: "requirements.json"
+
+  tasks:
     - name: Create Jenkins agent node
       ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
@@ -24,5 +27,6 @@
         follow_redirects: true
       register: result
 
-    - debug:
+    - name: Debug result
+      debug:
         var: result
