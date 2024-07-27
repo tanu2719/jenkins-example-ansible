@@ -3,17 +3,18 @@
   hosts: localhost
   gather_facts: no
   tasks:
-    - name: Read username and password from Vault
-      community.hashi_vault.hashivault_secret:
-        url: "http://127.0.0.1:8200"  # Replace with your Vault server URL
-        token: "00000000-0000-0000-0000-000000000000"  # Replace with your Vault token
-        secret: "secret/data/jenkins"  # Replace with your Vault secret path
-        version: 2  # Use 2 for KV v2; omit or use 1 for KV v1
-        register: vault_secrets
+    - name: Retrieve username from Vault
+      set_fact:
+        username: "{{ lookup('community.hashi_vault.hashivault', 'secret/data/myapp', token=lookup('env', 'VAULT_TOKEN'), url='http://127.0.0.1:8200')['data']['data']['username'] }}"
+
+    - name: Retrieve password from Vault
+      set_fact:
+        password: "{{ lookup('community.hashi_vault.hashivault', 'secret/data/myapp', token=lookup('env', 'VAULT_TOKEN'), url='http://127.0.0.1:8200')['data']['data']['password'] }}"
 
     - name: Print retrieved secrets
       debug:
         msg: |
-          Username: {{ vault_secrets.data.data.username }}
-          Password: {{ vault_secrets.data.data.password }}
+          Username: {{ username }}
+          Password: {{ password }}
+
 
