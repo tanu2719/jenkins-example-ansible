@@ -12,7 +12,7 @@
   tasks:
     - name: Print user from hashi vault
       debug:
-       msg: " print hasi user {{ansible_user}}"
+       msg: " print hasi user {{secret_username}}"
     - name: Create Jenkins agent node
       ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
