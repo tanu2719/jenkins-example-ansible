@@ -9,6 +9,7 @@
         url: http://127.0.0.1:8200  # Replace with the URL of your Vault server
         token: "{{ vault_token }}"
         secret: secret/data/jenkins  # Note the '/data/' in the path for KV v2
+        verify: false 
       register: vault_secret
 
     - name: Show the retrieved secret
