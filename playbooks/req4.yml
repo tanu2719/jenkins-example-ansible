@@ -2,9 +2,6 @@
 - name: Retrieve secrets from HashiCorp Vault
   hosts: localhost
   gather_facts: no
-  vars:
-    admin_username: "admin"
-    api_token: "11f6d1065b82b7f6cbb1962ca8302d02b6"
   tasks:
     - name: Retrieve secret from Vault
       uri:
