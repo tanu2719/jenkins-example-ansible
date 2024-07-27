@@ -9,7 +9,7 @@
 
   tasks:
     - name: Read a secret from HashiCorp Vault
-      community.general.uri:
+      ansible.builtin.uri:
         url: "{{ vault_url }}/v1/{{ secret_path }}"
         method: GET
         headers:
