@@ -4,8 +4,8 @@
   vars:
     jenkins_url: "http://localhost:8080"
     #admin_username: "admin"
-    ansible_user: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=username-linux') }}"
-    ansible_password: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=password-linux') }}"
+    ansible_user: "{{ lookup('hashi_vault', 'secret=secret/jenkins field=username-linux') }}"
+    ansible_password: "{{ lookup('hashi_vault', 'secret=secret/jenkins field=password-linux') }}"
     #api_token: "{{ lookup('hashi_vault', 'secret=secret/jenkins key=jenkins-api-token') }}"
     slave_config_file: "requirements.json"
 
