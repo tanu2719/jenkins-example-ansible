@@ -1,6 +1,7 @@
-[localhost]
-192.168.63.4
+[webservers]
+192.168.63.4 ansible_ssh_user=tanu
 
-[localhost:vars]
+[webservers:vars]
 ansible_python_interpreter=/usr/bin/python3
+
 
