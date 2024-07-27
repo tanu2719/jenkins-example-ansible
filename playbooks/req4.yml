@@ -5,15 +5,21 @@
   tasks:
     - name: Retrieve secret from Vault
       uri:
-        url: "http://127.0.0.1:8200/ui/vault/secrets/secret/kv/jenkins/details?version=2"
+        url: "http://127.0.0.1:8200/v1/secret/data/jenkins"
         method: GET
         headers:
           X-Vault-Token: "{{ lookup('env', 'VAULT_TOKEN') }}"
         return_content: yes
         status_code: 200
       register: vault_response
+
+    - name: Extract secrets from response
+      set_fact:
+        username_linux: "{{ vault_response.json.data.data['linux-username'] }}"
+        password_linux: "{{ vault_response.json.data.data['linux-password'] }}"
+
     - name: Print retrieved secrets
       debug:
         msg: |
-          Username: {{ username-linux }}
-          Password: {{ password-linux }}
+          Username: {{ username_linux }}
+          Password: {{ password_linux }}
