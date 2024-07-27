@@ -16,10 +16,8 @@
     - name: Extract secrets from response
       set_fact:
         username_linux: "{{ vault_response.json.data.data['linux-username'] }}"
-        password_linux: "{{ vault_response.json.data.data['linux-password'] }}"
 
     - name: Print retrieved secrets
       debug:
         msg: |
           Username: {{ username_linux }}
-          Password: {{ password_linux }}
