@@ -1,8 +1,19 @@
 ---
-- name: Test HashiCorp Vault Lookup
-  hosts: webservers
+- name: Retrieve secrets from Vault
+  hosts: localhost
   gather_facts: no
   tasks:
-    - name: Test HashiCorp Vault Lookup
+    - name: Read username and password from Vault
+      community.hashi_vault.hashi_vault:
+        url: "http://127.0.0.1:8200"  # Replace with your Vault server URL
+        token: "00000000-0000-0000-0000-000000000000"  # Replace with your Vault token
+        secret: "secret/data/jenkins"  # Replace with your Vault secret path
+        version: 2  # Use 2 for KV v2; omit or use 1 for KV v1
+        register: vault_secrets
+
+    - name: Print retrieved secrets
       debug:
-        msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=username-linux') }}"
+        msg: |
+          Username: {{ vault_secrets.data.data.username }}
+          Password: {{ vault_secrets.data.data.password }}
+
