@@ -1,18 +1,24 @@
 ---
-- name: Retrieve secret from Vault
+- name: Retrieve secret from HashiCorp Vault
   hosts: localhost
+  gather_facts: no
   vars:
-    vault_token: "00000000-0000-0000-0000-000000000000"  # Replace with your actual Vault token
+    vault_token: "00000000-0000-0000-0000-000000000000"
+    vault_url: "http://127.0.0.1:8200"
+    secret_path: "secret/jenkins"
+
   tasks:
-    - name: Read a secret from HashiCorp Vault KV v2
-      community.hashi_vault.vault_read:
-        url: http://127.0.0.1:8200  # Replace with the URL of your Vault server
-        token: "{{ vault_token }}"
-        secret: secret/data/jenkins  # Note the '/data/' in the path for KV v2
-        verify: false 
-      register: vault_secret
+    - name: Read a secret from HashiCorp Vault
+      community.general.uri:
+        url: "{{ vault_url }}/v1/{{ secret_path }}"
+        method: GET
+        headers:
+          X-Vault-Token: "{{ vault_token }}"
+        return_content: yes
+      register: response
 
     - name: Show the retrieved secret
       debug:
-        msg: "The value of the secret is {{ vault_secret.data.data }}"
+        msg: "The value of the secret is {{ response.json.data.value }}"
+
 
