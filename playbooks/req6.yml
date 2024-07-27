@@ -1,11 +1,13 @@
 ---
 - name: Retrieve secret from Vault
   hosts: localhost
+  vars:
+    vault_token: "00000000-0000-0000-0000-000000000000"
   tasks:
     - name: Read a secret from HashiCorp Vault
       community.hashi_vault.vault_read:
         url: http://127.0.0.1:8200
-        token: "{{ VAULT_TOKEN }}"
+        token: "{{ vault_token }}"
         secret: secret/my-secret
       register: vault_secret
 
