@@ -5,4 +5,4 @@
   tasks:
     - name: Test HashiCorp Vault Lookup
       debug:
-        msg: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=secret/data/jenkins field=username-linux') }}"
+        msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=username-linux') }}"
