@@ -9,7 +9,7 @@
     slave_config_file: "requirements.json"
 
   tasks:
-    -name: print user from hashi vault
+    -name: Print user from hashi vault
      debug:
        msg: " print hasi user {{ansible_user}}"
     - name: Create Jenkins agent node
