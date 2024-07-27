@@ -2,7 +2,7 @@
   hosts: localhost
   tasks:
     - name: Fetch content from example.com
-      community.builtin.uri:
+      ansible.builtin.uri:
         url: http://127.0.0.1:8200/ui/vault/auth?with=token
         method: GET
       register: result
