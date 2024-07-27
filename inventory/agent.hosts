@@ -1,5 +1,5 @@
 [localhosts]
-ansible_host=192.168.64.3 
+192.168.64.3 
 
 [localhosts:vars]
 ansible_python_interpreter=/usr/bin/python3
