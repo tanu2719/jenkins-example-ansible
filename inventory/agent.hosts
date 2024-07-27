@@ -1,6 +1,6 @@
-[localhosts]
-192.168.64.3 
+[localhost]
+192.168.63.4 ansible_connection=local
 
-[localhosts:vars]
+[localhost:vars]
 ansible_python_interpreter=/usr/bin/python3
 
