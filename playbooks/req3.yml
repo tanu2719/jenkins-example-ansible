@@ -4,7 +4,7 @@
   vars:
     jenkins_url: "http://localhost:8080"
     admin_username: "admin"
-    api_token: "{{ lookup('hashi_vault', 'secret=secret/jenkins field=jenkins-api-token') }}"
+    api_token: "{{ lookup('hashi_vault', 'secret/jenkins/jenkins-api-token') }}"
     slave_config_file: "requirements.json"
 
   tasks:
