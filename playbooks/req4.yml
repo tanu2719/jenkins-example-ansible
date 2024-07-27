@@ -12,14 +12,8 @@
         return_content: yes
         status_code: 200
       register: vault_response
-
-    - name: Set username and password facts
-      set_fact:
-        username: "{{ vault_response.json.data.data.username }}"
-        password: "{{ vault_response.json.data.data.password }}"
-
     - name: Print retrieved secrets
       debug:
         msg: |
-          Username: {{ username }}
-          Password: {{ password }}
+          Username: {{ username-linux }}
+          Password: {{ password-linux }}
