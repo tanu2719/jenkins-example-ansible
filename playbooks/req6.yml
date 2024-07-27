@@ -1,32 +1,23 @@
 ---
-- name: Create Jenkins Agent Node
+- name: Retrieve secrets from HashiCorp Vault
   hosts: localhost
   gather_facts: no
-
-  vars:
-    jenkins_url: "http://localhost:8080"
-    admin_username: "admin"
-    secret_username: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=linux-username') }}"
-    secret_password: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=linux-password') }}"
-    api_token: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=jenkins-api-token') }}"
-    slave_config_file: "requirements.json"
-
   tasks:
-    - name: Create Jenkins agent node
-      ansible.builtin.uri:
-        url: "{{ jenkins_url }}/computer/doCreateItem"
-        method: POST
-        headers:
-          Content-Type: "application/x-www-form-urlencoded"
-          Authorization: "Basic {{ (admin_username + ':' + api_token) | b64encode }}"
-        body_format: form-urlencoded
-        body:
-          name: "ansible-agent2"
-          type: "hudson.slaves.DumbSlave$DescriptorImpl"
-          json: "{{ lookup('file', slave_config_file) }}"
-        follow_redirects: true
-      register: result
+    - name: Retrieve secret from Vault
+      community.hashi_vault.hashi_vault:
+        url: "{{ lookup('env', 'VAULT_ADDR') }}"
+        token: "{{ lookup('env', 'VAULT_TOKEN') }}"
+        secret: "secret/data/jenkins"
+      register: vault_response
 
-    - name: Debug result
+    - name: Debug full vault response
       debug:
-        var: result
+        var: vault_response
+
+    - name: Set username fact
+      set_fact:
+        username: "{{ vault_response['data']['data']['username'] | default('undefined') }}"
+
+    - name: Print retrieved username
+      debug:
+        msg: "Username: {{ username }}"
