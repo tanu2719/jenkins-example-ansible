@@ -2,13 +2,17 @@
 - name: Retrieve secrets from HashiCorp Vault
   hosts: localhost
   gather_facts: no
+  vars:
+    admin_username: "admin"
+    api_token: "11f6d1065b82b7f6cbb1962ca8302d02b6"
   tasks:
     - name: Retrieve secret from Vault
       uri:
         url: "http://127.0.0.1:8200/v1/secret/data/jenkins"
         method: GET
         headers:
-          X-Vault-Token: "{{ lookup('env', 'VAULT_TOKEN') }}"
+          Content-Type: "application/x-www-form-urlencoded"
+          Authorization: "Basic {{ (admin_username + ':' + api_token) | b64encode }}"
         return_content: yes
         status_code: 200
       register: vault_response
