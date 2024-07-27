@@ -1,6 +1,6 @@
 ---
 - name: Test HashiCorp Vault Lookup
-  hosts: localhost
+  hosts: webservers
   gather_facts: no
   tasks:
     - name: Test HashiCorp Vault Lookup
