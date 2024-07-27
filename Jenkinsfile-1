@@ -1,27 +1,10 @@
----
-- name: Create Jenkins Agent Node
-  hosts: localhost
-  vars:
-    jenkins_url: "http://localhost:8080"
-    admin_username: "admin"
-    api_token: "11f6d1065b82b7f6cbb1962ca8302d02b6"
-    slave_config_file: "working_req.json"
-
-  tasks:
-    - name: Create Jenkins agent node
-      ansible.builtin.uri:
-        url: "{{ jenkins_url }}/computer/doCreateItem"
-        method: POST
-        headers:
-          Content-Type: "application/x-www-form-urlencoded"
-          Authorization: "Basic {{ (admin_username + ':' + api_token) | b64encode }}"
-        body_format: form-urlencoded
-        body:
-          name: "ansible-agent2"
-          type: "hudson.slaves.DumbSlave$DescriptorImpl"
-          json: "{{ lookup('file', slave_config_file) }}"
-        follow_redirects: true
-      register: result
-
-    - debug:
-        var: result
+pipeline {
+  agent any
+  stages {
+    stage('Hello') {
+      steps {
+        sh '/opt/homebrew/bin/ansible-playbook -i inventory/agent.hosts playbooks/working_playbook.yml -vvv'
+      }
+    }
+  }
+}
