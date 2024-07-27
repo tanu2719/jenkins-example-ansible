@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Retrieve secret from Vault
-      community.hashi_vault.hashi_vault:
+      community.hashi_vault.vault_read:
         url: "{{ lookup('env', 'VAULT_ADDR') }}"
         token: "{{ lookup('env', 'VAULT_TOKEN') }}"
         secret: "secret/data/jenkins"
