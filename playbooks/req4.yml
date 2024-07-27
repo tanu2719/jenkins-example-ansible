@@ -2,8 +2,6 @@
 - name: Retrieve secrets from HashiCorp Vault
   hosts: localhost
   gather_facts: no
-  vars:
-    VAULT_TOKEN : "00000000-0000-0000-0000-000000000000"
   tasks:
     - name: Retrieve secret from Vault
       uri:
