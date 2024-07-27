@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Read username and password from Vault
-      community.hashi_vault.hashi_vault:
+      community.hashi_vault.hashivault_secret:
         url: "http://127.0.0.1:8200"  # Replace with your Vault server URL
         token: "00000000-0000-0000-0000-000000000000"  # Replace with your Vault token
         secret: "secret/data/jenkins"  # Replace with your Vault secret path
