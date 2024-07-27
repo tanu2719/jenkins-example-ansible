@@ -6,7 +6,7 @@
     jenkins_url: "http://localhost:8080"
     admin_username: "admin"
     secret_username: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=linux-username') }}"
-    secret_username: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=linux-password') }}"
+    secret_password: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=linux-password') }}"
     api_token: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=jenkins-api-token') }}"
     slave_config_file: "requirements.json"
     - name: Create Jenkins agent node
