@@ -5,11 +5,11 @@
   tasks:
     - name: Retrieve username from Vault
       set_fact:
-        username: "{{ lookup('community.hashi_vault.hashivault', 'secret/data/myapp', token=lookup('env', 'VAULT_TOKEN'), url='http://127.0.0.1:8200')['data']['data']['username'] }}"
+        username: "{{ lookup('community.hashi_vault.hashivault', 'secret/data/jenkins', token=lookup('env', 'VAULT_TOKEN'), url='http://127.0.0.1:8200')['data']['data']['username'] }}"
 
     - name: Retrieve password from Vault
       set_fact:
-        password: "{{ lookup('community.hashi_vault.hashivault', 'secret/data/myapp', token=lookup('env', 'VAULT_TOKEN'), url='http://127.0.0.1:8200')['data']['data']['password'] }}"
+        password: "{{ lookup('community.hashi_vault.hashivault', 'secret/data/jenkins', token=lookup('env', 'VAULT_TOKEN'), url='http://127.0.0.1:8200')['data']['data']['password'] }}"
 
     - name: Print retrieved secrets
       debug:
