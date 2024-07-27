@@ -3,8 +3,4 @@
 
 [localhosts:vars]
 ansible_python_interpreter=/usr/bin/python3
-ansible_user={{lookup('hashi_vault','secret=secret/jenkins field=username-linux')}}
-ansible_password={{lookup('hashi_vault','secret=secret/jenkins field=password-linux')}}
 
-
-#ansible_user={{lookup('hashi_vault','secret=secret/path field=password')}}
