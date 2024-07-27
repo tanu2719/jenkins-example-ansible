@@ -4,8 +4,8 @@
   gather_facts: no
   vars:
     jenkins_url: "http://localhost:8080"
-    secret_username: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=secret/data/jenkins field=username-linux') }}"
-    secret_password: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=secret/data/jenkins field=password-linux') }}"
+    secret_username: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=username-linux') }}"
+    secret_password: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=password-linux') }}"
     slave_config_file: "requirements.json"
 
   tasks:
