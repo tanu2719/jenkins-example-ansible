@@ -5,7 +5,7 @@
   tasks:
     - name: Retrieve secret from Vault
       uri:
-        url: "http://127.0.0.1:8200/v1/secret/data/jenkins"
+        url: "http://127.0.0.1:8200/ui/vault/secrets/secret/kv/jenkins/details?version=2"
         method: GET
         headers:
           X-Vault-Token: "{{ lookup('env', 'VAULT_TOKEN') }}"
