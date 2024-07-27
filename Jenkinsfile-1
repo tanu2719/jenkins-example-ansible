@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Hello') {
       steps {
-        sh '/opt/homebrew/bin/ansible-playbook -i inventory/agent.hosts playbooks/req6.yml -vvv'
+        sh '/opt/homebrew/bin/ansible-playbook -i inventory/agent.hosts playbooks/req3.yml -vvv'
       }
     }
   }
