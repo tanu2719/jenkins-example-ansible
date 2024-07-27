@@ -1,23 +1,15 @@
 ---
-- name: Retrieve secrets from HashiCorp Vault
+- name: Retrieve secret from Vault
   hosts: localhost
-  gather_facts: no
   tasks:
-    - name: Retrieve secret from Vault
+    - name: Read a secret from HashiCorp Vault
       community.hashi_vault.vault_read:
-        url: "{{ lookup('env', 'VAULT_ADDR') }}"
-        token: "{{ lookup('env', 'VAULT_TOKEN') }}"
-        secret: "secret/data/jenkins"
-      register: vault_response
+        url: http://127.0.0.1:8200
+        token: "{{ VAULT_TOKEN }}"
+        secret: secret/my-secret
+      register: vault_secret
 
-    - name: Debug full vault response
+    - name: Show the retrieved secret
       debug:
-        var: vault_response
+        msg: "The value of the secret is {{ vault_secret.data.value }}"
 
-    - name: Set username fact
-      set_fact:
-        username: "{{ vault_response['data']['data']['username'] | default('undefined') }}"
-
-    - name: Print retrieved username
-      debug:
-        msg: "Username: {{ username }}"
