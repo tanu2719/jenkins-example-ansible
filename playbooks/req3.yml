@@ -11,9 +11,16 @@
     slave_config_file: "requirements.json"
 
   tasks:
-    - name: Print user from hashi vault
+    - name: Get user from hashi vault
+      community.hashi_vault.hashi_vault:
+       url: "http://127.0.0.1:8200" 
+       secret: "00000000-0000-0000-0000-000000000000"
+       field: "linux-username"
+      register: secret_data
+    - name: Print user for hashi vault
       debug:
-       msg: " print hasi user {{secret_username}}"
+       msg: "Print Hashi user {{ secret_data.field }}" 
+      
     - name: Create Jenkins agent node
       ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
