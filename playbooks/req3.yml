@@ -12,7 +12,7 @@
 
   tasks:
     - name: Get user from hashi vault
-      community.hashi_vault.hashi_vault:
+      community.hashi_vault:
        url: "http://127.0.0.1:8200" 
        secret: "00000000-0000-0000-0000-000000000000"
        field: "linux-username"
