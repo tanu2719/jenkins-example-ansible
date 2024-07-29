@@ -2,7 +2,7 @@
 - name: Retrieve secret from HashiCorp Vault using lookup plugin
   hosts: localhosts
   vars:
-    secret_username: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins token=00000000-0000-0000-0000-000000000000 url=http://127.0.0.1:8200') }}"
+    secret_username: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=secret/data/jenkins token=00000000-0000-0000-0000-000000000000 url=http://127.0.0.1:8200') }}"
   tasks:
     - name: Print retrieved username
       debug:
