@@ -9,8 +9,7 @@
     secret_password: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=password-linux') }}"
     api_token: "{{ lookup('hashi_vault', 'secret=secret/jenkins key=jenkins-api-token') }}"
     slave_config_file: "requirements.json"
-
-  tasks:
+tasks:
     - name: Get user from hashi vault
       community.hashi_vault:
        url: "http://127.0.0.1:8200" 
