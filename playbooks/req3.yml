@@ -1,39 +1,9 @@
 ---
-- name: Create Jenkins Agent Node
+- name: Retrieve secret from HashiCorp Vault using lookup plugin
   hosts: localhosts
-  gather_facts: no
   vars:
-    jenkins_url: "http://localhost:8080"
-    #admin_username: "admin"
-    secret_username: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=username-linux') }}"
-    secret_password: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins field=password-linux') }}"
-    api_token: "{{ lookup('hashi_vault', 'secret=secret/jenkins key=jenkins-api-token') }}"
-    slave_config_file: "requirements.json"
+    secret_username: "{{ lookup('community.hashi_vault.hashi_vault', 'secret/data/jenkins, 'linux-username', url='http://127.0.0.1:8200', token='00000000-0000-0000-0000-000000000000') }}"
   tasks:
-    - name: Get user from hashi vault
-      community.hashi_vault.hashi_vault:
-       url: "http://127.0.0.1:8200" 
-       secret: "00000000-0000-0000-0000-000000000000"
-       field: "linux-username"
-      register: secret_data
-    - name: Print user for hashi vault
+    - name: Print retrieved username
       debug:
-       msg: "Print Hashi user {{ secret_data.field }}" 
-      
-    - name: Create Jenkins agent node
-      ansible.builtin.uri:
-        url: "{{ jenkins_url }}/computer/doCreateItem"
-        method: POST
-        headers:
-          Content-Type: "application/x-www-form-urlencoded"
-          Authorization: "Basic {{ (admin_username + ':' + api_token) | b64encode }}"
-        body_format: form-urlencoded
-        body:
-          name: "ansible-agent2"
-          type: "hudson.slaves.DumbSlave$DescriptorImpl"
-          json: "{{ lookup('file', slave_config_file) }}"
-        follow_redirects: true
-      register: result
-
-    - debug:
-        var: result
+        msg: "Print Hashi user {{ secret_username }}"
