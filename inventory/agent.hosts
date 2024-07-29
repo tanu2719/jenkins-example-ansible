@@ -1,5 +1,5 @@
 [localhosts]
-192.168.63.4 ansible_connection=local
+192.168.63.4 ansible_become=true ansible_become_method=sudo ansible_become_user=root ansible_become_pass=linux
 
 [localhosts:vars]
 ansible_python_interpreter=/Users/tanushreerakshit/.pyenv/ansibleenv/bin/python3
