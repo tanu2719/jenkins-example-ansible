@@ -16,6 +16,6 @@
 
     - name: Show the secret value
       debug:
-        msg: "The secret value is {{ secret_value }}"
+        msg: "The secret value is {{ secret_key }}"
 
 
