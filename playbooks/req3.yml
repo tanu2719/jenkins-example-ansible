@@ -4,7 +4,7 @@
   vars:
     jenkins_url: "http://localhost:8080"
     admin_username: "admin"
-    api_token: "11f6d1065b82b7f6cbb1962ca8302d02b6"
+    #api_token: "11f6d1065b82b7f6cbb1962ca8302d02b6"
     vault_addr: "http://127.0.0.1:8200/ui/vault/auth?with=token"
     vault_token: "00000000-0000-0000-0000-000000000000"
     # Define the path to the Jenkins API token in Vault
@@ -12,7 +12,7 @@
     slave_config_file: "working_req.json"
 
   tasks:
-  - name: Retrieve Jenkins API token from Vault
+    - name: Retrieve Jenkins API token from Vault
       set_fact:
         jenkins_api_token: "{{ lookup('hashi_vault', jenkins_secret_path, url=vault_addr, token=vault_token).data.data.api_token }}"
         
@@ -22,7 +22,7 @@
         method: POST
         headers:
           Content-Type: "application/x-www-form-urlencoded"
-          Authorization: "Basic {{ (admin_username + ':' + api_token) | b64encode }}"
+          Authorization: "Basic {{ (admin_username + ':' + jenkins_api_token) | b64encode }}"
         body_format: form-urlencoded
         body:
           name: "ansible-agent2"
