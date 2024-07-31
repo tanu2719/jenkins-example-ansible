@@ -1,11 +1,21 @@
 - name: Example Playbook
-  hosts: localhost
+  hosts: all
   tasks:
-    - name: Set Vault URL
-      set_fact:
-        vault_url: "http://127.0.0.1:8200/ui/vault/auth?with=token"  # Update with your Vault address
-
     - name: Retrieve a secret from Vault
+      uri:
+        url: "http://127.0.0.1:8200/ui/vault/secrets/secret/kv/jenkins/details?version=2"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ lookup('env', 'my_hashi_vault') }}"
+        return_content: yes
+      register: vault_response
+
+    - name: Parse the secret from Vault response
+      set_fact:
+        secret_value: "{{ vault_response.json.data.data.secret_key }}"
+
+    - name: Show the secret value
       debug:
-        msg: "{{ lookup('hashi_vault', 'secret/data/jenkins', url=vault_url, token=lookup('env', 'my_hashi_vault')) }}"
+        msg: "The secret value is {{ secret_value }}"
+
 
