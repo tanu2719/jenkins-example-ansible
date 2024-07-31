@@ -19,12 +19,12 @@
         url: 'http://127.0.0.1:8200'
        register: vault_secret
 
-    - name: Set Jenkins API token
-      set_fact:
+     - name: Set Jenkins API token
+       set_fact:
        jenkins_api_token: "{{ vault_secret.value.token }}"
 
-    - name: Create Jenkins agent node
-      ansible.builtin.uri:
+     - name: Create Jenkins agent node
+       ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
         method: POST
         headers:
@@ -36,8 +36,7 @@
           type: "hudson.slaves.DumbSlave$DescriptorImpl"
           json: "{{ lookup('file', slave_config_file) }}"
         follow_redirects: true
-      register: result
+       register: result
 
-    - debug:
+     - debug:
         var: result
-
