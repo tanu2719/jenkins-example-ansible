@@ -10,6 +10,7 @@
     # Define the path to the Jenkins API token in Vault
     jenkins_secret_path: "secret/data/jenkins"
     slave_config_file: "working_req.json"
+    jenkins_api_token: "{{ lookup('hashi_vault', jenkins_secret_path, url=vault_addr, token=vault_token).data.data.api_token }}"
 
   tasks:       
     - name: Create Jenkins agent node
