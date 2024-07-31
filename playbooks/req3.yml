@@ -11,7 +11,18 @@
     jenkins_secret_path: "secret/data/jenkins"
     slave_config_file: "working_req.json"
     jenkins_api_token: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins:value token=00000000-0000-0000-0000-000000000000 url=http://127.0.0.1:8200/ui/vault/auth?with=token')}}"
-  tasks:       
+  tasks: 
+     - name: Retrieve Jenkins API token from Vault
+       community.hashi_vault.hashi_vault:
+        secret: secret/data/jenkins
+        token: '00000000-0000-0000-0000-000000000000'
+        url: 'http://127.0.0.1:8200'
+       register: vault_secret
+
+    - name: Set Jenkins API token
+      set_fact:
+       jenkins_api_token: "{{ vault_secret.value.token }}"
+
     - name: Create Jenkins agent node
       ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
