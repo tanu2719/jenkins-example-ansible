@@ -10,7 +10,7 @@
     # Define the path to the Jenkins API token in Vault
     jenkins_secret_path: "secret/data/jenkins"
     slave_config_file: "working_req.json"
-    jenkins_api_token: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins:value token=00000000-0000-0000-0000-000000000000 url=http://127.0.0.1:8200/ui/vault/auth?with=token')}}"
+    #jenkins_api_token: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins:value token=00000000-0000-0000-0000-000000000000 url=http://127.0.0.1:8200/ui/vault/auth?with=token')}}"
   tasks: 
      - name: Retrieve Jenkins API token from Vault
        community.hashi_vault.hashi_vault:
