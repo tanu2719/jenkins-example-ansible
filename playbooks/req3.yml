@@ -3,4 +3,4 @@
   tasks:
     - name: Retrieve a secret from Vault
       debug:
-        msg: "{{ lookup('hashivault', 'secret/data/jenkins', token=lookup('env', 'my_hashi_vault')) }}"
+        msg: "{{ lookup('hashi_vault', 'secret/data/jenkins', token=lookup('env', 'my_hashi_vault')) }}"
