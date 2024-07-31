@@ -14,7 +14,7 @@
   tasks: 
      - name: Read Jenkins API token from Vault
        set_fact:
-        jenkins_api_token: "{{ lookup('community.hashi_vault.vault_read', 'secret=secret/data/jenkins token=00000000-0000-0000-0000-000000000000 url=http://127.0.0.1:8200')['data']['token'] }}"
+        jenkins_api_token: "{{ lookup('community.hashi_vault.vault_read', 'secret=secret/data/jenkins token=00000000-0000-0000-0000-000000000000 url=http://127.0.0.1:8200/ui/vault/auth?with=token')['data']['token'] }}"
 
      - name: Create Jenkins agent node
        ansible.builtin.uri:
