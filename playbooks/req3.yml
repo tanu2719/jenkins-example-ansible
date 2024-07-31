@@ -11,11 +11,7 @@
     jenkins_secret_path: "secret/data/jenkins"
     slave_config_file: "working_req.json"
 
-  tasks:
-    - name: Retrieve Jenkins API token from Vault
-      set_fact:
-        jenkins_api_token: "{{ lookup('hashi_vault', jenkins_secret_path, url=vault_addr, token=vault_token).data.data.api_token }}"
-        
+  tasks:       
     - name: Create Jenkins agent node
       ansible.builtin.uri:
         url: "{{ jenkins_url }}/computer/doCreateItem"
