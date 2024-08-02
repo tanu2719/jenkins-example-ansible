@@ -4,7 +4,7 @@
   vars:
     jenkins_url: "http://localhost:8080"
     jenkins_hashivault_url: "{{ lookup('env', 'jenkins_vault_url') }}"
-    jenkins_hashi_token: "{{ lookup('env', 'MY_HASHI_VAULT') }}"        
+    jenkins_hashi_token: "{{ lookup('env', 'VAULT_TOKEN') }}"        
     jenkins_admin_username: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins:jenkins-admin-username', token=jenkins_hashi_token, url=jenkins_hashivault_url) }}"
     jenkins_api_token: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins:jenkins-api-token', token=jenkins_hashi_token, url=jenkins_hashivault_url) }}"
     slave_config_file: "working_req.json"
