@@ -6,7 +6,7 @@
     jenkins_admin_username: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins:jenkins-admin-username', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200') }}"
     jenkins_api_token: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins:jenkins-api-token', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200') }}"
     slave_config_file: "working_req.json"
-    jenkins_vault_plugin: "{{lookup('env','	my_hashi_vault')}}"
+    jenkins_vault_plugin: "{{lookup('env','my_hashi_vault')}}"
 
   tasks:
     - name: Debug raw Vault data (KV v2)
