@@ -2,9 +2,13 @@ pipeline {
   agent any
   stages {
     stage('Hello') {
-      steps {
-        sh ' export "OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES"'
-        sh '/Users/tanushreerakshit/.pyenv/ansibleenv/bin/ansible-playbook -i inventory/agent.hosts playbooks/req3.yml -vvv'
+      steps { 
+        script {
+        sh '''
+        export "OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES"'
+        /Users/tanushreerakshit/.pyenv/ansibleenv/bin/ansible-playbook -i inventory/agent.hosts playbooks/req3.yml -vvv
+        '''
+        }
       }
     }
   }
