@@ -1,9 +1,12 @@
 ---
-- name: Retrieve username from HashiCorp Vault (KV v2)
+- name: Retrieve username from Vault
   hosts: localhost
   gather_facts: no
-
   tasks:
-   - name: Retrieve the username from Vault (KV v2)
-     debug:
-       msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200')['data']['data']['jenkins-admin-username'] }}"
+    - name: Debug raw Vault data (KV v2)
+      debug:
+        msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200') }}"
+
+    - name: Debug raw Vault data (KV v1)
+      debug:
+        msg: "{{ lookup('hashi_vault', 'secret=secret/jenkins', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200') }}"
