@@ -13,6 +13,6 @@
       debug:
         msg: "jenkins username is {{jenkins_admin_username}} and api token is {{jenkins_api_token}}"
 
-      - name: Retrieve data from jenkins
+    - name: Retrieve data from jenkins
       debug:
-        msg: "jenkins plugin is {{jenkins_vault_plugin}}"
+       msg: "jenkins plugin is {{jenkins_vault_plugin}}"
