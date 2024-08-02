@@ -1,3 +1,4 @@
+
 ---
 - name: Create Jenkins Agent Node
   hosts: localhost
@@ -9,7 +10,7 @@
 
   tasks:
     - name: Return all kv v2 secrets from a path
-       debug:
+      debug:
         msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200') }}"
         
     - name: Create Jenkins agent node
