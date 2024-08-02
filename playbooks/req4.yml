@@ -6,6 +6,6 @@
   tasks:
     - name: Retrieve the username from Vault
       debug:
-        msg: "{{ lookup('hashi_vault', 'secret=secret/jenkins', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200')['data']['jenkins-admin-username'] }}"
+        msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200')['data']['jenkins-admin-username'] }}"
 
         
