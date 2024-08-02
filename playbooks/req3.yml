@@ -17,7 +17,7 @@
       #   jenkins_api_token: "{{ lookup('community.hashi_vault.vault_read', 'secret=secret/data/jenkins,token=00000000-0000-0000-0000-000000000000,url=http://127.0.0.1:8200')['data']['token'] }}"
      - name: Return all kv v2 secrets from a path
        debug:
-        msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins token=vault_token url=http://127.0.0.1:8200') }}"
+        msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins token= 'vault_token' url=http://127.0.0.1:8200') }}"
     
      - name: Create Jenkins agent node
        ansible.builtin.uri:
