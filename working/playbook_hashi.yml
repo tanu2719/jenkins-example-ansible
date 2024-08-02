@@ -13,7 +13,7 @@
       debug:
         msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200') }}"
 
-    - name: Debug raw Vault data (KV v2)
+    - name: Return specific key value from a kv2 path
       debug:
         msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins:jenkins-admin-username', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200') }}" 
         
