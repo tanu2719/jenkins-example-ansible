@@ -1,15 +1,11 @@
-
 ---
-- name: Create Jenkins Agent Node
+- name: Retrieve username from HashiCorp Vault (KV v2)
   hosts: localhost
-  vars:
-    jenkins_url: "http://localhost:8080"
-    jenkins_username: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200')['data']['username'] }}"
-    jenkins_api_token: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200')['data']['api_token'] }}"
-    slave_config_file: "working_req.json"
+  gather_facts: no
 
   tasks:
-    - name: Return all kv v2 secrets from a path
+    - name: Retrieve the username from Vault
       debug:
-        msg: "jenkins user name is {{jenkins_username}} and api_token is {{jenkins_api_token}}  "
+        msg: "{{ lookup('hashi_vault', 'secret=secret/data/jenkins', token='00000000-0000-0000-0000-000000000000', url='http://127.0.0.1:8200')['data']['data']['username'] }}"
+
         
