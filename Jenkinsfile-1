@@ -2,8 +2,6 @@ pipeline {
     agent any
     environment {
         VAULT_TOKEN = credentials('MY_HASHI_VAULT')
-        USERNAME = credentials('my_username_password').username
-        PASSWORD = credentials('my_username_password').password
     }
     stages {
         stage('Run Ansible Playbook') {
