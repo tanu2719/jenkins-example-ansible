@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        VAULT_TOKEN = credentials('MY_HASHI_VAULT')
+        VAULT_TOKEN = credentials('jenkins_hashi_vault_token')
     }
     stages {
         stage('Run Ansible Playbook') {
