@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Hello') {
       steps {
-        sh '/Users/tanushreerakshit/.jenkins/workspace/ansible/ansible_credentials export "OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES"'
+        sh ' export "OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES"'
         sh '/Users/tanushreerakshit/.pyenv/ansibleenv/bin/ansible-playbook -i inventory/agent.hosts playbooks/req3.yml -vvv'
       }
     }
